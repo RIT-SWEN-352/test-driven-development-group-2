@@ -42,6 +42,7 @@ public class SimpleBankAccount {
     }
 
     public void deposit(float amount) {
+        assert false: "Not yet implemneted";
         balance += amount;
     }
 
