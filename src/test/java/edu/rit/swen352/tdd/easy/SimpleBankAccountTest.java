@@ -112,5 +112,15 @@ class SimpleBankAccountTest {
         );
     }
 
+    @Test
+    @DisplayName("Cannot create account with negative balance")
+    void testConstructorRejectsNegativeBalance() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new SimpleBankAccount(-1.0f)
+        );
+    }
+
+
 
 }
