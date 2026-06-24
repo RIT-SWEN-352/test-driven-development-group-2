@@ -2,6 +2,7 @@ package edu.rit.swen352.tdd.easy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,6 +80,17 @@ class SimpleBankAccountTest {
         account.withdraw(40.0f);
 
         assertEquals(60.0f, account.getBalance());
+    }
+
+    @Test
+    @DisplayName("Cannot withdraw more than current balance")
+    void testWithdrawMoreThanBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(50.0f);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> account.withdraw(60.0f)
+        );
     }
 
 }
