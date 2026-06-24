@@ -54,7 +54,6 @@ public class SimpleBankAccount {
 
     @Override
     public String toString() {
-        assert false: "Not yet implemneted";
         return String.format("$%.2f", balance);
     }
 

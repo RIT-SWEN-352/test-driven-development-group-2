@@ -94,7 +94,7 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    @DisplayName("toString formats balance as currency")
+    @DisplayName("Formats balance as currency")
     void testToString() {
         SimpleBankAccount account = new SimpleBankAccount(20.5f);
 
