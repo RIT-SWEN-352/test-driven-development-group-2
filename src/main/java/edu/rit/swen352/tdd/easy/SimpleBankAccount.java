@@ -35,7 +35,6 @@ public class SimpleBankAccount {
 
     public SimpleBankAccount() {
         this(0.0f);
-        assert false: "not yet implemented";
     }
 
 }
