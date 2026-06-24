@@ -47,7 +47,6 @@ public class SimpleBankAccount {
 
     public void withdraw(float amount) {
         if (balance - amount < 0) {
-            assert false: "Not yet implemneted";
             throw new IllegalArgumentException("Insufficient funds");
         }
         balance -= amount;
