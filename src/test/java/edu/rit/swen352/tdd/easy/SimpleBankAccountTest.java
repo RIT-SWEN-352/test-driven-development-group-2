@@ -93,4 +93,12 @@ class SimpleBankAccountTest {
         );
     }
 
+    @Test
+    @DisplayName("toString formats balance as currency")
+    void testToString() {
+        SimpleBankAccount account = new SimpleBankAccount(20.5f);
+
+        assertEquals("$20.50", account.toString());
+    }
+
 }
