@@ -61,4 +61,14 @@ class SimpleBankAccountTest {
         assertEquals(125.0f, account.getBalance());
     }
 
+    @Test
+    @DisplayName("Depositing zero leaves balance unchanged")
+    void testDepositZero() {
+        SimpleBankAccount account = new SimpleBankAccount(100.0f);
+
+        account.deposit(0.0f);
+
+        assertEquals(100.0f, account.getBalance());
+    }
+
 }
