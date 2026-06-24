@@ -37,4 +37,9 @@ public class SimpleBankAccount {
         this(0.0f);
     }
 
+    public boolean isAccountEmpty() {
+        assert false: "Not yet implemneted";
+        return balance == 0.0f;
+    }
+
 }
