@@ -113,6 +113,17 @@ class SimpleBankAccountTest {
     }
 
     @Test
+    @DisplayName("Cannot deposit negative amount")
+    void testDepositNegativeAmount() {
+        SimpleBankAccount account = new SimpleBankAccount(100.0f);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> account.deposit(-10.0f)
+        );
+    }
+
+    @Test
     @DisplayName("Cannot create account with negative balance")
     void testConstructorRejectsNegativeBalance() {
         assertThrows(
