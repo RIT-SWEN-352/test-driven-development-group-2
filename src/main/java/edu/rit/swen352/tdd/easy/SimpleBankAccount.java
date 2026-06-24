@@ -46,6 +46,9 @@ public class SimpleBankAccount {
     }
 
     public void withdraw(float amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Cannot deposit negative amount");
+        }
         if (balance - amount < 0) {
             throw new IllegalArgumentException("Insufficient funds");
         }

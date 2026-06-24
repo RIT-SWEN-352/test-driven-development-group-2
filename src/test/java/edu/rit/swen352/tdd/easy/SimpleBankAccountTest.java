@@ -102,13 +102,13 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    @DisplayName("Cannot deposit negative amount")
-    void testDepositNegativeAmount() {
+    @DisplayName("Cannot withdraw negative amount")
+    void testWithdrawNegativeAmount() {
         SimpleBankAccount account = new SimpleBankAccount(100.0f);
 
         assertThrows(
                 IllegalArgumentException.class,
-                () -> account.deposit(-10.0f)
+                () -> account.withdraw(-10.0f)
         );
     }
 
