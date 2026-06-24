@@ -29,8 +29,13 @@ public class SimpleBankAccount {
         this(0.0f);
     }
 
-    public SimpleBankAccount(float balance) {
-        this.balance = balance;
+    public SimpleBankAccount(float initialBalance) {
+        if (initialBalance < 0.0f) {
+            throw new IllegalArgumentException(
+                    "Initial balance cannot be negative");
+        }
+
+        this.balance = initialBalance;
     }
 
     public float getBalance() {
