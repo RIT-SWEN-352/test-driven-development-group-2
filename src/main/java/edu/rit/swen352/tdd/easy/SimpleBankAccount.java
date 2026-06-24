@@ -25,6 +25,10 @@ public class SimpleBankAccount {
 
     private float balance;
 
+    public SimpleBankAccount() {
+        this(0.0f);
+    }
+
     public SimpleBankAccount(float balance) {
         this.balance = balance;
     }
@@ -33,13 +37,8 @@ public class SimpleBankAccount {
         return balance;
     }
 
-    public SimpleBankAccount() {
-        this(0.0f);
-    }
-
     public boolean isAccountEmpty() {
         return balance == 0.0f;
     }
 
 }
-//assert false: "Not yet implemneted";
