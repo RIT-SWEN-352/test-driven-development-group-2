@@ -1,8 +1,8 @@
 package edu.rit.swen352.tdd.easy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +41,14 @@ class SimpleBankAccountTest {
         SimpleBankAccount account = new SimpleBankAccount();
 
         assertTrue(account.isAccountEmpty());
+    }
+
+    @Test
+    @DisplayName("Account with positive balance is not empty")
+    void testIsAccountEmptyFalse() {
+        SimpleBankAccount account = new SimpleBankAccount(10.0f);
+
+        assertFalse(account.isAccountEmpty());
     }
 
 }
