@@ -33,4 +33,9 @@ public class SimpleBankAccount {
         return balance;
     }
 
+    public SimpleBankAccount() {
+        this(0.0f);
+        assert false: "not yet implemented";
+    }
+
 }

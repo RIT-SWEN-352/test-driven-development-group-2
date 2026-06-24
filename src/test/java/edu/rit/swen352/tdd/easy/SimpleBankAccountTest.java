@@ -11,10 +11,18 @@ class SimpleBankAccountTest {
 
     @Test
     @DisplayName("ctor with an initial balance")
-        void testConstructorWithInitislBalnce() {
+        void testConstructorInitialBalnce() {
         SimpleBankAccount account = new SimpleBankAccount(100.0f);
 
         assertEquals(100.0f, account.getBalance());
+    }
+
+    @Test
+    @DisplayName("No-arg constructor defaults balance to zero")
+    void testNoArgConstructor() {
+        SimpleBankAccount account = new SimpleBankAccount();
+
+        assertEquals(0.0f, account.getBalance());
     }
 
 }
