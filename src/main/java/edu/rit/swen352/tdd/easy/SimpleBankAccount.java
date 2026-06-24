@@ -38,7 +38,6 @@ public class SimpleBankAccount {
     }
 
     public boolean isAccountEmpty() {
-        assert false: "Not yet implemneted";
         return balance == 0.0f;
     }
 
