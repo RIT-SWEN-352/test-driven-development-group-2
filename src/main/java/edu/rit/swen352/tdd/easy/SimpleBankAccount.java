@@ -46,7 +46,6 @@ public class SimpleBankAccount {
     }
 
     public void withdraw(float amount) {
-        assert false: "Not yet implemneted";
         balance -= amount;
     }
 
