@@ -71,4 +71,14 @@ class SimpleBankAccountTest {
         assertEquals(100.0f, account.getBalance());
     }
 
+    @Test
+    @DisplayName("Withdraw decreases balance")
+    void testWithdraw() {
+        SimpleBankAccount account = new SimpleBankAccount(100.0f);
+
+        account.withdraw(40.0f);
+
+        assertEquals(60.0f, account.getBalance());
+    }
+
 }
