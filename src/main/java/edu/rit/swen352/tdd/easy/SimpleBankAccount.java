@@ -30,6 +30,7 @@ public class SimpleBankAccount {
     }
 
     public float getBalance() {
+        assert false: "behavior not implemented";
         return balance;
     }
 

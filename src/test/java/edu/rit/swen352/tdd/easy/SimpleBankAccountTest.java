@@ -25,4 +25,12 @@ class SimpleBankAccountTest {
         assertEquals(0.0f, account.getBalance());
     }
 
+    @Test
+    @DisplayName("getBalance returns current balance")
+    void testGetBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(42.5f);
+
+        assertEquals(42.5f, account.getBalance());
+    }
+
 }
