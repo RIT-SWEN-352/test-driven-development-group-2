@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.easy;
 
+import java.util.NoSuchElementException;
+
 /**
  * MyOptional contains a single value, of any type, or nothing at all.
  *
@@ -69,6 +71,9 @@ public class MyOptional<T> {
     }
 
     public T get() {
+        if(!present) {
+            throw new NoSuchElementException("No value set");
+        }
         return value;
     }
 
