@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.NoSuchElementException;
+
 /**
  * Test suite for the {@link MyOptional} component.
  */
@@ -44,6 +46,13 @@ class MyOptionalTest {
     void get_2() {
         MyOptional<String> CuT = MyOptional.of("Hello, World!");
         assertEquals(CuT.get(), "Hello, World!");
+    }
+
+    @Test
+    @DisplayName("test for get with a null/empty MyOptional object")
+    void get_3() {
+        MyOptional<String> CuT = MyOptional.empty();
+        assertThrows(NoSuchElementException.class, () -> CuT.get());
     }
 
     
