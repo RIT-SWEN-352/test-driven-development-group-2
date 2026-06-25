@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -71,6 +72,16 @@ class MyOptionalTest {
         AtomicInteger result = new AtomicInteger(0);
         CuT.ifPresent(value -> result.set(value));
         assertEquals(0, result.get());
+    }
+
+    @Test
+    @DisplayName("test for ifPresent not executing consumer on empty MyOptional")
+    void ifPresent_3() {
+        MyOptional<String> CuT = MyOptional.empty();
+
+        AtomicBoolean executed = new AtomicBoolean(false);
+        CuT.ifPresent(value -> executed.set(true));
+        assertFalse(executed.get(), "consumer should not execute for empty optional");
     }
 
     
