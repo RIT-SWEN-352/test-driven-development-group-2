@@ -78,9 +78,9 @@ public class MyOptional<T> {
         return value;
     }
 
-    public void ifPresent(Consumer<?> consumer) {
+    public void ifPresent(Consumer<? super T> consumer) {
         if(present) {
-            assert false: "Not yet implemented";
+            consumer.accept(value);
         }
     }
 

@@ -60,8 +60,8 @@ class MyOptionalTest {
     void ifPresent_1() {
         MyOptional<Integer> CuT = MyOptional.of(10);
         AtomicInteger result = new AtomicInteger(0);
-        CuT.ifPresent(value -> result.set((int) value));
-        assertEquals(0, result.get());
+        CuT.ifPresent(value -> result.set(value));
+        assertEquals(10, result.get());
     }
 
     
