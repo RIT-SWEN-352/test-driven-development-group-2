@@ -20,7 +20,10 @@ class MyOptionalTest {
     @Test
     @DisplayName("test for empty returning an empty MyOptional object")
     void empty_1() {
-        assertTrue(MyOptional.empty() == MyOptional.empty());
+        MyOptional<String> first = MyOptional.empty();
+        MyOptional<String> second = MyOptional.empty();
+
+        assertNotSame(first, second);
     }
 
 
