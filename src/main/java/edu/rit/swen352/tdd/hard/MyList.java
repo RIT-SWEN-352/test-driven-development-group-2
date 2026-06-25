@@ -22,7 +22,6 @@ package edu.rit.swen352.tdd.hard;
 public class MyList<T> {
 
     public MyList(int initialCapacity) {
-        assert false : "not yet implemented";
     }
 
 }
