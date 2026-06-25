@@ -36,4 +36,21 @@ package edu.rit.swen352.tdd.easy;
  * @param <T> the type of value.
  */
 public class MyOptional<T> {
+
+    private T value;
+
+    //hidden constructor
+    private MyOptional(T value) {
+        this.value = value;
+    }
+
+    public static <T> MyOptional<T> of(T value) {
+        if(value == null) {
+            throw new NullPointerException("Value cannot be false");
+        }
+        return new MyOptional<T>(value);
+    }
+
+
+
 }

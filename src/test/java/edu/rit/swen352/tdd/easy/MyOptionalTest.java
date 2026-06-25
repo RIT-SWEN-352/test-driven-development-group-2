@@ -10,4 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MyOptionalTest {
 
+    @Test
+    @DisplayName("test for of being null")
+    void of_1() {
+            assertThrows(NullPointerException.class, () -> {MyOptional.of(null);
+        });
+    }
+
 }
