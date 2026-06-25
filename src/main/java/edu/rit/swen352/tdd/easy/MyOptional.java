@@ -58,8 +58,10 @@ public class MyOptional<T> {
     }
 
     public static <T> MyOptional<T> ofNullable(T value) {
-        assert false: ("Not yet implemented");
-        return null;
+        if(value == null) {
+            return empty();
+        }
+        return of(value);
     }
 
     public boolean isPresent() {
