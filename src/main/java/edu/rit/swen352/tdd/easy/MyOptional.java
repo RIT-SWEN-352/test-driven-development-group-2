@@ -44,8 +44,11 @@ public class MyOptional<T> {
         this.value = value;
     }
 
-    public static <T> void of(T value) {
-        assert false: "Not yet implemented";
+    public static <T> MyOptional<T> of(T value) {
+        if(value == null) {
+            throw new NullPointerException("Value cannot be false");
+        }
+        return new MyOptional<T>(value);
     }
 
 
