@@ -68,4 +68,8 @@ public class MyOptional<T> {
         return present;
     }
 
+    public T get() {
+        return value;
+    }
+
 }

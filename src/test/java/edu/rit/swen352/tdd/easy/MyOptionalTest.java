@@ -32,6 +32,13 @@ class MyOptionalTest {
         assertFalse(CuT.isPresent()); 
     }
 
+    @Test
+    @DisplayName("test for get properly returning an int")
+    void get_1() {
+        MyOptional<Integer> CuT = MyOptional.of(10);
+        assertEquals(CuT.get(), 10);
+    }
+
     
 
 }
