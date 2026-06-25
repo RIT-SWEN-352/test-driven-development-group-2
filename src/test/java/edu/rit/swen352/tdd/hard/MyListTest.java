@@ -25,4 +25,12 @@ class MyListTest {
 
         assertTrue(list.isEmpty());
     }
+
+    @Test
+    @DisplayName("New list size is zero")
+    void testSizeNewList() {
+        MyList<String> list = new MyList<>(10);
+
+        assertEquals(0, list.size());
+    }
 }
