@@ -64,6 +64,15 @@ class MyOptionalTest {
         assertEquals(10, result.get());
     }
 
+    @Test
+    @DisplayName("test for ifPresent doing nothing when empty")
+    void ifPresent_2() {
+        MyOptional<Integer> CuT = MyOptional.empty();
+        AtomicInteger result = new AtomicInteger(0);
+        CuT.ifPresent(value -> result.set(value));
+        assertEquals(0, result.get());
+    }
+
     
 
 }
