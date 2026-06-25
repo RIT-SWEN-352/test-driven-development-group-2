@@ -35,6 +35,8 @@ public class Temperature {
   Temperature (double value, TemperatureUnit unit) {
     if (unit == TemperatureUnit.KELVIN && value < 0) {
       throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
+    } else if (unit == TemperatureUnit.FAHRENHEIT && value < 459.67) {
+      throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
     }
     this.value = value;
     this.unit = unit;
