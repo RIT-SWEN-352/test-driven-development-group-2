@@ -17,4 +17,12 @@ class MyListTest {
 
         assertNotNull(list);
     }
+
+    @Test
+    @DisplayName("New list is empty")
+    void testIsEmptyNewList() {
+        MyList<String> list = new MyList<>(10);
+
+        assertTrue(list.isEmpty());
+    }
 }

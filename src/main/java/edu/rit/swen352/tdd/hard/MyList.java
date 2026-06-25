@@ -24,5 +24,9 @@ public class MyList<T> {
     public MyList(int initialCapacity) {
     }
 
+    public boolean isEmpty() {
+        assert false : "not yet implemented";
+        return false;
+    }    
 }
 
