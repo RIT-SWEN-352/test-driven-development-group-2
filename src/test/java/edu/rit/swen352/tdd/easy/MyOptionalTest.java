@@ -39,6 +39,13 @@ class MyOptionalTest {
         assertEquals(CuT.get(), 10);
     }
 
+    @Test
+    @DisplayName("test for get properly returning a string")
+    void get_2() {
+        MyOptional<String> CuT = MyOptional.of("Hello, World!");
+        assertEquals(CuT.get(), "Hello, World!");
+    }
+
     
 
 }
