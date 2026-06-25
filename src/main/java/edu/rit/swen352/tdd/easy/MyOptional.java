@@ -51,6 +51,10 @@ public class MyOptional<T> {
         return new MyOptional<T>(value);
     }
 
+    public static <T> MyOptional<T> empty() {
+        return new MyOptional<>(null);
+    }
+
 
 
 }
