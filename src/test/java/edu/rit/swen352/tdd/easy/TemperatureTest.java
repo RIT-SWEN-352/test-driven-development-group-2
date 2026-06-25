@@ -24,4 +24,12 @@ class TemperatureTest {
       , () -> assertEquals(tunit, temperatureTest.unit, "unit is correct")
     );
   }
+
+  @Test
+  @DisplayName("ctor rejects impossible -1 kelvin temp")
+  void ctor_2() {
+    Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.KELVIN;
+    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-1, unit));
+    assertEquals("value must be greater than or equal to 0 when unit is KELVIN", e.getMessage());
+  }
 }
