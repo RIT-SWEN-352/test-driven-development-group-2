@@ -20,6 +20,14 @@ class MyOptionalTest {
     }
 
     @Test
+    @DisplayName("test for of returning an int")
+    void of_2() {
+        MyOptional<Integer> CuT = MyOptional.of(10);
+        assertEquals(10, CuT.get(), "of correctly returned an int");
+    }
+
+
+    @Test
     @DisplayName("test for empty returning an empty MyOptional object")
     void empty_1() {
         MyOptional<String> CuT = MyOptional.empty();
