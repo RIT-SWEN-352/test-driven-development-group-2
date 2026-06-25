@@ -28,4 +28,12 @@ public class Temperature {
   public enum TemperatureUnit {
     CELSIUS, FAHRENHEIT, KELVIN
   }
+
+  final double value;
+  final TemperatureUnit unit;
+
+  Temperature (double value, TemperatureUnit unit) {
+    this.value = value;
+    this.unit = unit;
+  }
 }
