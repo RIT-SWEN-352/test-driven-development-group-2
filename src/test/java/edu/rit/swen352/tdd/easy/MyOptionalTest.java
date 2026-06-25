@@ -36,13 +36,6 @@ class MyOptionalTest {
     }
 
     @Test
-    @DisplayName("test for ofNullable never returning null from a present MyOptional object")
-    void ofNullable_2() {
-        MyOptional<String> CuT = MyOptional.ofNullable("test");
-        assertNotNull(CuT.get());
-    }
-
-    @Test
     @DisplayName("test for get properly returning an int")
     void get_1() {
         MyOptional<Integer> CuT = MyOptional.of(10);
@@ -61,6 +54,13 @@ class MyOptionalTest {
     void get_3() {
         MyOptional<Integer> CuT = MyOptional.empty();
         assertThrows(NoSuchElementException.class, () -> CuT.get(), "get threw an error for an empty MyOptional");
+    }
+
+    @Test
+    @DisplayName("test for get never returning null from a present MyOptional object")
+    void get_4() {
+        MyOptional<String> CuT = MyOptional.ofNullable("test");
+        assertNotNull(CuT.get());
     }
 
     @Test
