@@ -37,6 +37,8 @@ public class Temperature {
       throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
     } else if (unit == TemperatureUnit.FAHRENHEIT && value < 459.67) {
       throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
+    } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
+      throw new IllegalArgumentException("Value must be greater than or equal to -273.15 when unit is CELSIUS");
     }
     this.value = value;
     this.unit = unit;
