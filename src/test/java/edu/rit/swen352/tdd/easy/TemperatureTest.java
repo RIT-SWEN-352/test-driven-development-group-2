@@ -39,4 +39,12 @@ class TemperatureTest {
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-460, unit));
     assertEquals("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT", e.getMessage());
   }
+
+  @Test
+  @DisplayName("ctor rejects impossible -274 Celsius temp")
+  void ctor_4() {
+    Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.CELSIUS;
+    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-274, unit));
+    assertEquals("Value must be greater than or equal to -273.15 when unit is CELSIUS", e.getMessage());
+  }
 }
