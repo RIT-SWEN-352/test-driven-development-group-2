@@ -36,6 +36,13 @@ class MyOptionalTest {
     }
 
     @Test
+    @DisplayName("test for ofNullable never returning null from a present MyOptional object")
+    void ofNullable_2() {
+        MyOptional<String> CuT = MyOptional.ofNullable("test");
+        assertNotNull(CuT.get());
+    }
+
+    @Test
     @DisplayName("test for get properly returning an int")
     void get_1() {
         MyOptional<Integer> CuT = MyOptional.of(10);
