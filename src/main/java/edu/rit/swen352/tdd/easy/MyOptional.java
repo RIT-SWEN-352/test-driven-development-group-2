@@ -38,23 +38,32 @@ package edu.rit.swen352.tdd.easy;
 public class MyOptional<T> {
 
     private T value;
+    private final boolean present;
 
     //hidden constructor
-    private MyOptional(T value) {
+    private MyOptional(T value, boolean present) {
         this.value = value;
+        this.present = present;
+    }
+
+    public static <T> MyOptional<T> empty() {
+        return new MyOptional<>(null, false);
     }
 
     public static <T> MyOptional<T> of(T value) {
         if(value == null) {
             throw new NullPointerException("Value cannot be false");
         }
-        return new MyOptional<T>(value);
+        return new MyOptional<T>(value, true);
     }
 
-    public static <T> MyOptional<T> empty() {
-        return new MyOptional<>(null);
+    public static <T> MyOptional<T> ofNullable(T value) {
+        assert false: ("Not yet implemented");
+        return null;
     }
 
-
+    public boolean isPresent() {
+        return present;
+    }
 
 }

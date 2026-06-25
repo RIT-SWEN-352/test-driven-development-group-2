@@ -20,11 +20,18 @@ class MyOptionalTest {
     @Test
     @DisplayName("test for empty returning an empty MyOptional object")
     void empty_1() {
-        MyOptional<String> first = MyOptional.empty();
-        MyOptional<String> second = MyOptional.empty();
+        MyOptional<String> CuT = MyOptional.empty();
 
-        assertNotSame(first, second);
+        assertFalse(CuT.isPresent());
     }
 
+    @Test
+    @DisplayName("test for ofNullable returning an empty MyOptional object")
+    void ofNullable_1() {
+        MyOptional<String> CuT = MyOptional.ofNullable(null);
+        assertFalse(CuT.isPresent()); 
+    }
+
+    
 
 }
