@@ -1,7 +1,10 @@
 package edu.rit.swen352.tdd.easy;
 
+import edu.rit.swen352.tdd.sample.Counter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,5 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test suite for the {@link Temperature} component.
  */
 class TemperatureTest {
-
+  @ParameterizedTest(name = "Test value={0}, unit={1}")
+  @CsvSource({"1,KELVIN", "460,FAHRENHEIT", "274,CELSIUS"})
+  @DisplayName("ctor with both unit and value")
+  void ctor_1(int value, String unit) {
+    Temperature.TemperatureUnit tunit = Temperature.TemperatureUnit.valueOf(unit); //need to convert
+    final Temperature temperatureTest = new Temperature(value, tunit);
+    assertAll("group assertions"
+      , () -> assertNotNull(temperatureTest)
+      , () -> assertEquals(value, temperatureTest.value, "value is correct")
+      , () -> assertEquals(tunit, temperatureTest.unit, "unit is correct")
+    );
+  }
 }
