@@ -1,6 +1,5 @@
 package edu.rit.swen352.tdd.easy;
 
-import edu.rit.swen352.tdd.sample.Counter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,6 +29,6 @@ class TemperatureTest {
   void ctor_2() {
     Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.KELVIN;
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-1, unit));
-    assertEquals("value must be greater than or equal to 0 when unit is KELVIN", e.getMessage());
+    assertEquals("Value must be greater than or equal to 0 when unit is KELVIN", e.getMessage());
   }
 }

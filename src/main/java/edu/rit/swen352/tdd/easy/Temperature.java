@@ -33,6 +33,9 @@ public class Temperature {
   final TemperatureUnit unit;
 
   Temperature (double value, TemperatureUnit unit) {
+    if (unit == TemperatureUnit.KELVIN && value < 0) {
+      throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
+    }
     this.value = value;
     this.unit = unit;
   }
