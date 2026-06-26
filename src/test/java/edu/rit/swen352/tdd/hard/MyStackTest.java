@@ -32,4 +32,11 @@ class MyStackTest {
         assertEquals(1000, CuT.getCapacity());
     }
 
+    @Test
+    @DisplayName("isEmpty returning true for empty stack")
+    void isEmpty_1() {
+        MyStack<Integer> CuT = new MyStack<>();
+        assertTrue(CuT.isEmpty());
+    }
+
 }
