@@ -50,7 +50,7 @@ public class MyStack<T> {
     public int capacity;
 
     public MyStack(int capacity) {
-        assert false: "Not yet implemeneted";
+        this.capacity = capacity;
     }
 
 
