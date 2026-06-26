@@ -15,21 +15,21 @@ class MyStackTest {
     void MyStack_1() {
         MyStack<Integer> CuT = new MyStack<>(10);
 
-        assertEquals(10, CuT.capacity);
+        assertEquals(10, CuT.getCapacity());
     }
 
     @Test
     @DisplayName("ctor defaults to 16")
     void MyStack_2() {
         MyStack<Integer> CuT = new MyStack<>();
-        assertEquals(16, CuT.capacity);
+        assertEquals(16, CuT.getCapacity());
     }
 
     @Test
     @DisplayName("getCapacity returns correct capacity")
     void getCapacity_1() {
-        MyStack<Integer> CuT = new MyStack<>();
-        assertEquals(16, CuT.getCapacity());
+        MyStack<Integer> CuT = new MyStack<>(1000);
+        assertEquals(1000, CuT.getCapacity());
     }
 
 }
