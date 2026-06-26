@@ -25,4 +25,11 @@ class MyStackTest {
         assertEquals(16, CuT.capacity);
     }
 
+    @Test
+    @DisplayName("getCapacity returns correct capacity")
+    void getCapacity_1() {
+        MyStack<Integer> CuT = new MyStack<>();
+        assertEquals(16, CuT.getCapacity());
+    }
+
 }
