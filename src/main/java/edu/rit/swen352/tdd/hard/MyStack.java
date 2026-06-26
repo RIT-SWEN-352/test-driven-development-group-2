@@ -48,9 +48,11 @@ package edu.rit.swen352.tdd.hard;
 public class MyStack<T> {
 
     private int capacity;
+    private int size;
 
     public MyStack(int capacity) {
         this.capacity = capacity;
+        this.size = 0;
     }
 
     public MyStack() {
@@ -62,8 +64,7 @@ public class MyStack<T> {
     }
 
     public boolean isEmpty() {
-        assert false: "Not yet implemented";
-        return false;
+        return size == 0;
     }
 
 }
