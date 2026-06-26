@@ -10,4 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MyStackTest {
 
+    @Test
+    @DisplayName("ctor sets capacity correctly")
+    void MyStack_1() {
+        MyStack<Integer> CuT = new MyStack<>(10);
+
+        assertEquals(10, CuT.capacity);
+    }
+
 }
