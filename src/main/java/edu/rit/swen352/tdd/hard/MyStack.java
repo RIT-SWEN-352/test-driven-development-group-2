@@ -53,5 +53,9 @@ public class MyStack<T> {
         this.capacity = capacity;
     }
 
+    public MyStack() {
+        assert false: "Not yet implemented";
+    }
+
 
 }

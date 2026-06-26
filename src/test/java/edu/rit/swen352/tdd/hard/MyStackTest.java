@@ -18,4 +18,11 @@ class MyStackTest {
         assertEquals(10, CuT.capacity);
     }
 
+    @Test
+    @DisplayName("ctor defaults to 16")
+    void MyStack_2() {
+        MyStack<Integer> CuT = new MyStack<>();
+        assertEquals(16, CuT.capacity);
+    }
+
 }
