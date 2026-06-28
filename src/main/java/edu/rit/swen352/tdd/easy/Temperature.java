@@ -55,10 +55,24 @@ public class Temperature {
   public Temperature convertTo(TemperatureUnit unit){
     double currentValue = this.value;
     TemperatureUnit currentUnit = this.unit;
+
     if (currentUnit == TemperatureUnit.FAHRENHEIT) {
       currentValue = (currentValue - 32) * (5.0/9.0);
       currentUnit = TemperatureUnit.CELSIUS;
+      if (currentUnit == unit) {
+        return new Temperature(currentValue, currentUnit);
+      }
     }
+
+    if (currentUnit == TemperatureUnit.CELSIUS) {
+      currentValue += 273.15;
+      currentUnit = TemperatureUnit.KELVIN;
+      if (currentUnit == unit) {
+        return new Temperature(currentValue, currentUnit);
+      }
+    }
+
+
     return new Temperature(currentValue, currentUnit);
   }
 }
