@@ -74,4 +74,17 @@ class CircularQueueTest {
       , () -> assertFalse(ring_buffer.isEmpty())
     );
   }
+
+  @ParameterizedTest
+  @MethodSource("provideListOfElementsToAdd")
+  @DisplayName("add valid number of valid elements to buffer")
+  void add_1_fail(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity-1);
+    for (int i = 0; i < inputList.size() - 1; i++) {
+      ring_buffer.add(inputList.indexOf(i));
+    }
+
+    final Exception e = assertThrows(IllegalStateException.class, () -> ring_buffer.add(inputList.getLast()));
+    assertEquals(CircularQueue.QUEUE_FULL, e.getMessage());
+  }
 }

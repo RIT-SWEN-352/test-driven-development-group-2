@@ -52,6 +52,7 @@ import java.util.NoSuchElementException;
 public class CircularQueue<T> {
   static final int DEFAULT_CAPACITY = 16;
   static final String BAD_CAPACITY = "Capacity should be greater than 0.";
+  static final String QUEUE_FULL = "The CircularQueue is full, no more elements may be added until some are removed.";
 
   private final int capacity;
   private int write_index = 0;
