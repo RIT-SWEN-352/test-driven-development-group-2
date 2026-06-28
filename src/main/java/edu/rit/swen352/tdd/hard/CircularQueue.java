@@ -90,6 +90,9 @@ public class CircularQueue<T> {
   }
 
   public T element() {
+    if (isEmpty()) {
+      throw new NoSuchElementException(QUEUE_EMPTY);
+    }
     return this.buffer.get(this.read_index);
   }
 }
