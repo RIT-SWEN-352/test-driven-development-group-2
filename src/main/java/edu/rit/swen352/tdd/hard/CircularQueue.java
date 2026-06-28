@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -51,15 +53,17 @@ public class CircularQueue<T> {
   static final int DEFAULT_CAPACITY = 16;
   static final String BAD_CAPACITY = "Capacity should be greater than 0.";
 
-  final int capacity;
+  private final int capacity;
   private int write_index = 0;
   private int read_index = 0;
+  private final List<T> buffer;
 
   CircularQueue(int capacity) {
     if (capacity < 1){
       throw new IllegalArgumentException(BAD_CAPACITY);
     }
     this.capacity = capacity;
+    this.buffer = new ArrayList<>(this.capacity);
   }
 
   CircularQueue() { this(DEFAULT_CAPACITY); }
@@ -67,6 +71,7 @@ public class CircularQueue<T> {
   public boolean isEmpty(){ return write_index == read_index; }
 
   public void add(T element) {
-    assert false: "Not yet implemented";
+    this.buffer.add(this.write_index, element);
+    this.write_index = (this.write_index + 1) % this.capacity;
   }
 }
