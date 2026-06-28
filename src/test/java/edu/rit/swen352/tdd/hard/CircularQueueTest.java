@@ -80,7 +80,7 @@ class CircularQueueTest {
 
   @ParameterizedTest
   @MethodSource("provideListOfElementsToAdd")
-  @DisplayName("add valid number of valid elements to buffer")
+  @DisplayName("add invalid number of valid elements to buffer")
   void add_1_fail(List<Integer> inputList, int capacity){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity-1);
     for (int i = 0; i < inputList.size() - 1; i++) {
@@ -93,7 +93,7 @@ class CircularQueueTest {
 
   @ParameterizedTest
   @MethodSource("provideListOfElementsToAdd")
-  @DisplayName("add valid number of valid elements to buffer")
+  @DisplayName("remove valid number of valid elements from buffer")
   void remove_1(List<Integer> inputList, int capacity){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
     for (int val : inputList) {
@@ -120,7 +120,7 @@ class CircularQueueTest {
 
   @ParameterizedTest
   @MethodSource("provideListOfElementsToAdd")
-  @DisplayName("add valid number of valid elements to buffer")
+  @DisplayName("remove invalid number of valid elements from buffer")
   void remove_1_fail(List<Integer> inputList, int capacity){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
     for (int val : inputList) {
@@ -133,5 +133,27 @@ class CircularQueueTest {
 
     final Exception e = assertThrows(NoSuchElementException.class, ring_buffer::remove);
     assertEquals(CircularQueue.QUEUE_EMPTY, e.getMessage());
+  }
+
+  static Stream<Arguments> provideLargeListOfElementsToAdd() {
+    return Stream.of(
+      Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), 8),
+      Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19), 9),
+      Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21), 5)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideLargeListOfElementsToAdd")
+  @DisplayName("add and remove many valid number of valid elements to and from buffer")
+  void add_remove_1(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
+
+    for (int val : inputList) {
+      ring_buffer.add(val);
+      ring_buffer.remove();
+    }
+
+    assertTrue(ring_buffer.isEmpty());
   }
 }
