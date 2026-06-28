@@ -72,6 +72,9 @@ public class CircularQueue<T> {
   public boolean isEmpty(){ return write_index == read_index; }
 
   public void add(T element) {
+    if ((this.write_index + 1) % this.capacity == this.read_index){
+      throw new IllegalStateException(QUEUE_FULL);
+    }
     this.buffer.add(this.write_index, element);
     this.write_index = (this.write_index + 1) % this.capacity;
   }
