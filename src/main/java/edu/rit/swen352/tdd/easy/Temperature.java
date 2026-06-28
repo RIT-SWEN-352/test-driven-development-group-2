@@ -56,22 +56,18 @@ public class Temperature {
     double currentValue = this.value;
     TemperatureUnit currentUnit = this.unit;
 
-    if (currentUnit == TemperatureUnit.FAHRENHEIT) {
-      currentValue = (currentValue - 32) * (5.0/9.0);
-      currentUnit = TemperatureUnit.CELSIUS;
-      if (currentUnit == unit) {
-        return new Temperature(currentValue, currentUnit);
+    while (currentUnit != unit) {
+      if (currentUnit == TemperatureUnit.FAHRENHEIT) {
+        currentValue = (currentValue - 32) * (5.0/9.0);
+        currentUnit = TemperatureUnit.CELSIUS;
+      } else if (currentUnit == TemperatureUnit.CELSIUS) {
+        currentValue += 273.15;
+        currentUnit = TemperatureUnit.KELVIN;
+      } else if (currentUnit == TemperatureUnit.KELVIN) {
+        currentValue = (currentValue - 273.15) * (9.0/5.0) + 32;
+        currentUnit = TemperatureUnit.FAHRENHEIT;
       }
     }
-
-    if (currentUnit == TemperatureUnit.CELSIUS) {
-      currentValue += 273.15;
-      currentUnit = TemperatureUnit.KELVIN;
-      if (currentUnit == unit) {
-        return new Temperature(currentValue, currentUnit);
-      }
-    }
-
 
     return new Temperature(currentValue, currentUnit);
   }
