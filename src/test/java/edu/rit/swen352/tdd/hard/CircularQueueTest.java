@@ -28,7 +28,7 @@ class CircularQueueTest {
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
     assertAll("group ctor assertions"
       , () -> assertNotNull(ring_buffer)
-      , () -> assertEquals(capacity, ring_buffer.capacity)
+      , () -> assertEquals(capacity, ring_buffer.getCapacity())
     );
   }
 
