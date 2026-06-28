@@ -62,13 +62,7 @@ public class CircularQueue<T> {
     this.capacity = capacity;
   }
 
-  CircularQueue() {
-    this(DEFAULT_CAPACITY);
-  }
-
-  public int getCapacity() {
-    return this.capacity;
-  }
-
+  CircularQueue() { this(DEFAULT_CAPACITY); }
+  public int getCapacity() { return this.capacity; }
   public boolean isEmpty(){ return write_index == read_index; }
 }
