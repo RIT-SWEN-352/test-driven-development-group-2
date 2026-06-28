@@ -26,23 +26,48 @@ package edu.rit.swen352.tdd.easy;
  */
 public class Temperature {
   public enum TemperatureUnit {
-    CELSIUS, FAHRENHEIT, KELVIN
+    CELSIUS(-273.15) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2f°C", value);
+      }
+    },
+    FAHRENHEIT(-459.67) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2f°F", value);
+      }
+    },
+    KELVIN(0) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2fK", value);
+      }
+    };
+
+    public boolean isBelowAbsoluteZero(final double value) {
+      return value <= absoluteZeroThreshold;
+    }
+
+    public abstract String displayString(final double value);
+
+    private final double absoluteZeroThreshold;
+    TemperatureUnit(double absoluteZeroThreshold) {
+      this.absoluteZeroThreshold = absoluteZeroThreshold;
+    }
   }
 
   final double value;
   final TemperatureUnit unit;
 
   Temperature (double value, TemperatureUnit unit) {
-    if (unit == TemperatureUnit.KELVIN && value < 0) {
-      throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
-    } else if (unit == TemperatureUnit.FAHRENHEIT && value < -459.67) {
-      throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
-    } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
-      throw new IllegalArgumentException("Value must be greater than or equal to -273.15 when unit is CELSIUS");
+    if (unit.isBelowAbsoluteZero(value)) {
+      throw new IllegalArgumentException(BAD_TEMP_VALUE);
     }
     this.value = value;
     this.unit = unit;
   }
+  static final String BAD_TEMP_VALUE = "Value must be greater than or equal to absolute zero.";
 
   Temperature (double value) {
     this(value, TemperatureUnit.CELSIUS);
@@ -77,11 +102,6 @@ public class Temperature {
   }
 
   public String toString(){
-    if (this.unit == TemperatureUnit.CELSIUS) {
-      return String.format("%.2f°C", this.value);
-    } else if(this.unit == TemperatureUnit.FAHRENHEIT) {
-      return String.format("%.2f°F", this.value);
-    }
-    return String.format("%.2fK", this.value);
+    return unit.displayString(value);
   }
 }
