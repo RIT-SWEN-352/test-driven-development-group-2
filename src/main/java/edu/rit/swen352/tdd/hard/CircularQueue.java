@@ -52,8 +52,7 @@ public class CircularQueue<T> {
   final int capacity;
 
   CircularQueue(int capacity) {
-    assert false : "Not yet implemented";
-    this.capacity = 0;
+    this.capacity = capacity;
   }
 
   CircularQueue() {
