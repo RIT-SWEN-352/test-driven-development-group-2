@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.NoSuchElementException;
+
 /**
  * MyStack is a fixed-size, LIFO (last-in-first-out) stack.
  * All elements must be non-{@code null}.
@@ -46,4 +48,70 @@ package edu.rit.swen352.tdd.hard;
  * @param <T> the type of elements in the stack.
  */
 public class MyStack<T> {
+
+    private int capacity;
+    private int size;
+    private final Object[] elements;
+
+    public MyStack(int capacity) {
+        if(capacity < 0) {
+            throw new IllegalArgumentException("Capacity cannot be negative");
+        }
+        this.capacity = capacity;
+        this.size = 0;
+        this.elements = new Object[capacity];
+    }
+
+    public MyStack() {
+        this(16);
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void push(T element) {
+        if (size == capacity) {
+            throw new IllegalStateException("Stack is full");
+        }
+
+        if (element == null) {
+            throw new NullPointerException("Stack cannot contain null elements");
+        }
+
+        elements[size] = element;
+        size++;
+    }
+
+    @SuppressWarnings("unchecked")
+    public T pop() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack is empty");
+        }
+
+        size--;
+
+        T element = (T) elements[size];
+        elements[size] = null;
+        return element; 
+    }
+
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack is empty");
+        }
+
+        return (T) elements[size - 1];
+    }
+
+
 }
