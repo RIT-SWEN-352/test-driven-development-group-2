@@ -39,4 +39,11 @@ class CircularQueueTest {
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new CircularQueue<>(capacity));
     assertEquals(CircularQueue.BAD_CAPACITY, e.getMessage());
   }
+
+  @Test
+  @DisplayName("is empty without prior action")
+  void empty_1(){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>();
+    assertTrue(ring_buffer.isEmpty());
+  }
 }
