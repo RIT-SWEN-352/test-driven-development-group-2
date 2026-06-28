@@ -63,4 +63,9 @@ public class CircularQueue<T> {
   CircularQueue() {
     this(DEFAULT_CAPACITY);
   }
+
+  public int getCapacity() {
+    assert false : "Not yet implemented";
+    return 0;
+  }
 }
