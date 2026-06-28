@@ -51,12 +51,12 @@ class TemperatureTest {
   @Test
   @DisplayName("convert valid fahrenheit to celsius")
   void convert_1() {
-    Temperature fTemp = new Temperature(100, Temperature.TemperatureUnit.FAHRENHEIT);
+    Temperature fTemp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
     Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.CELSIUS);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
-      , () -> assertEquals(212, cTemp.getValue())
+      , () -> assertEquals(100, cTemp.getValue())
       , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, cTemp.getUnit())
     );
   }

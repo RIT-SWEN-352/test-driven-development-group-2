@@ -35,7 +35,7 @@ public class Temperature {
   Temperature (double value, TemperatureUnit unit) {
     if (unit == TemperatureUnit.KELVIN && value < 0) {
       throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
-    } else if (unit == TemperatureUnit.FAHRENHEIT && value < 459.67) {
+    } else if (unit == TemperatureUnit.FAHRENHEIT && value < -459.67) {
       throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
     } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
       throw new IllegalArgumentException("Value must be greater than or equal to -273.15 when unit is CELSIUS");
@@ -53,7 +53,12 @@ public class Temperature {
   }
 
   public Temperature convertTo(TemperatureUnit unit){
-    assert false : "Not yet implemented";
-    return null;
+    double currentValue = this.value;
+    TemperatureUnit currentUnit = this.unit;
+    if (currentUnit == TemperatureUnit.FAHRENHEIT) {
+      currentValue = (currentValue - 32) * (5.0/9.0);
+      currentUnit = TemperatureUnit.CELSIUS;
+    }
+    return new Temperature(currentValue, currentUnit);
   }
 }
