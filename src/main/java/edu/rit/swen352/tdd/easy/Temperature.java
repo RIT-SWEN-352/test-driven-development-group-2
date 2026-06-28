@@ -82,6 +82,6 @@ public class Temperature {
     } else if(this.unit == TemperatureUnit.FAHRENHEIT) {
       return String.format("%.2f°F", this.value);
     }
-    return null;
+    return String.format("%.2fK", this.value);
   }
 }
