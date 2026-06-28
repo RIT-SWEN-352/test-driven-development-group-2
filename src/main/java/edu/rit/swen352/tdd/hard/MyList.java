@@ -20,6 +20,8 @@ package edu.rit.swen352.tdd.hard;
  * @param <T> the type of elements in the list.
  */
 public class MyList<T> {
+    
+    private int size = 0;
 
     public MyList(int initialCapacity) {
     }
@@ -29,7 +31,12 @@ public class MyList<T> {
     }    
 
     public int size() {
-        return 0;
+        return size;
+    }
+
+    
+    public void add(T element) {
+        size++;
     }
 }
 
