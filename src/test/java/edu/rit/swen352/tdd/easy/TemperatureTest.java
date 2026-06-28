@@ -4,6 +4,7 @@ import edu.rit.swen352.tdd.easy.Temperature.TemperatureUnit;
 import static edu.rit.swen352.tdd.easy.Temperature.TemperatureUnit.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -71,7 +72,7 @@ class TemperatureTest {
   }
 
   @Test
-  @DisplayName("convert valid fahrenheit to kelvin")
+  @DisplayName("convert valid Fahrenheit to kelvin")
   void convert_2() {
     Temperature fTemp = new Temperature(212, FAHRENHEIT);
     Temperature cTemp = fTemp.convertTo(KELVIN);
@@ -84,7 +85,7 @@ class TemperatureTest {
   }
 
   @Test
-  @DisplayName("convert valid celsius to kelvin")
+  @DisplayName("convert valid Celsius to kelvin")
   void convert_3() {
     Temperature fTemp = new Temperature(100, CELSIUS);
     Temperature cTemp = fTemp.convertTo(KELVIN);
@@ -97,7 +98,7 @@ class TemperatureTest {
   }
 
   @Test
-  @DisplayName("convert valid kelvin to fahrenheit")
+  @DisplayName("convert valid Kelvin to Fahrenheit")
   void convert_4() {
     Temperature fTemp = new Temperature(373.15, KELVIN);
     Temperature cTemp = fTemp.convertTo(FAHRENHEIT);
@@ -122,24 +123,23 @@ class TemperatureTest {
     );
   }
 
-  @Test
-  @DisplayName("toString celsius shows correctly")
-  void string_1(){
-    Temperature temp = new Temperature(100);
-    assertEquals("100.00°C", temp.toString());
+  @Nested
+  @DisplayName("toString tests")
+  class toStringTests {
+    @ParameterizedTest(name = "Test {0}-{1} => \"{2}\"")
+    @DisplayName("toString")
+    @MethodSource("toStringTests")
+    void test_toString(double value, TemperatureUnit unit, String expectedString) {
+      final Temperature CuT =  new Temperature(value, unit);
+      assertEquals(expectedString, CuT.toString());
+    }
+    static Stream<Arguments> toStringTests() {
+      return Stream.of(
+        Arguments.of(100.0f, CELSIUS, "100.00°C"),
+        Arguments.of(212.0f, FAHRENHEIT, "212.00°F"),
+        Arguments.of(373.15, KELVIN, "373.15K")
+      );
+    }
   }
 
-  @Test
-  @DisplayName("toString fahrenheit shows correctly")
-  void string_2(){
-    Temperature temp = new Temperature(212, FAHRENHEIT);
-    assertEquals("212.00°F", temp.toString());
-  }
-
-  @Test
-  @DisplayName("toString kelvin shows correctly")
-  void string_3(){
-    Temperature temp = new Temperature(373.15, KELVIN);
-    assertEquals("373.15K", temp.toString());
-  }
 }

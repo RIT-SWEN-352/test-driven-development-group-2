@@ -26,14 +26,30 @@ package edu.rit.swen352.tdd.easy;
  */
 public class Temperature {
   public enum TemperatureUnit {
-    CELSIUS(-273.15),
-    FAHRENHEIT(-459.67),
-    KELVIN(0)
-    ;
+    CELSIUS(-273.15) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2f°C", value);
+      }
+    },
+    FAHRENHEIT(-459.67) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2f°F", value);
+      }
+    },
+    KELVIN(0) {
+      @Override
+      public String displayString(double value) {
+        return String.format("%.2fK", value);
+      }
+    };
 
     public boolean isBelowAbsoluteZero(final double value) {
       return value <= absoluteZeroThreshold;
     }
+
+    public abstract String displayString(final double value);
 
     private final double absoluteZeroThreshold;
     TemperatureUnit(double absoluteZeroThreshold) {
@@ -86,11 +102,6 @@ public class Temperature {
   }
 
   public String toString(){
-    if (this.unit == TemperatureUnit.CELSIUS) {
-      return String.format("%.2f°C", this.value);
-    } else if(this.unit == TemperatureUnit.FAHRENHEIT) {
-      return String.format("%.2f°F", this.value);
-    }
-    return String.format("%.2fK", this.value);
+    return unit.displayString(value);
   }
 }
