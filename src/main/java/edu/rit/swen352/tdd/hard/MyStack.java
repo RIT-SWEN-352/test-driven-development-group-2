@@ -95,10 +95,16 @@ public class MyStack<T> {
         }
 
         size--;
-        
+
         T element = (T) elements[size];
         elements[size] = null;
         return element; 
     }
+
+    public T peek() {
+        assert false: "Not yet implemented";
+        return null;
+    }
+
 
 }

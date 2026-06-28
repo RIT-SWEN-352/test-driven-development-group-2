@@ -105,5 +105,15 @@ class MyStackTest {
         });
     }
 
+    @Test
+    @DisplayName("peek returns top element without removing")
+    void peek_1() {
+         MyStack<Integer> CuT = new MyStack<>();
+        CuT.push(10);
+        
+        assertEquals(10, CuT.peek());
+        assertEquals(1, CuT.size());
+    }
+
 
 }
