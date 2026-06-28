@@ -54,6 +54,9 @@ public class CircularQueue<T> {
   final int capacity;
 
   CircularQueue(int capacity) {
+    if (capacity < 1){
+      throw new IllegalArgumentException(BAD_CAPACITY);
+    }
     this.capacity = capacity;
   }
 
