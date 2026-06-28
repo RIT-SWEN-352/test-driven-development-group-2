@@ -51,4 +51,9 @@ public class Temperature {
   public TemperatureUnit getUnit() {
     return unit;
   }
+
+  public Temperature convertTo(TemperatureUnit unit){
+    assert false : "Not yet implemented";
+    return null;
+  }
 }
