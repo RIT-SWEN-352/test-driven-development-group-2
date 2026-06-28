@@ -81,6 +81,9 @@ public class CircularQueue<T> {
   }
 
   public T remove() {
+    if (isEmpty()) {
+      throw new NoSuchElementException(QUEUE_EMPTY);
+    }
     T val = this.buffer.get(this.read_index);
     this.read_index = (this.read_index + 1) % this.capacity;
     return val;
