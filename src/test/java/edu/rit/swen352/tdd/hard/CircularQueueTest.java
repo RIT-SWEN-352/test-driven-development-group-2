@@ -7,10 +7,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -116,5 +116,22 @@ class CircularQueueTest {
       , () -> assertTrue(ring_buffer.isEmpty())
       , () -> assertEquals(capacity-1, copyRemoved.size())
     );
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideListOfElementsToAdd")
+  @DisplayName("add valid number of valid elements to buffer")
+  void remove_1_fail(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
+    for (int val : inputList) {
+      ring_buffer.add(val);
+    }
+
+    for (int i = 0; i < inputList.size(); i++) {
+      ring_buffer.remove();
+    }
+
+    final Exception e = assertThrows(NoSuchElementException.class, ring_buffer::remove);
+    assertEquals(CircularQueue.QUEUE_EMPTY, e.getMessage());
   }
 }

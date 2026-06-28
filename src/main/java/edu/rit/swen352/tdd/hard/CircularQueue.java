@@ -53,6 +53,7 @@ public class CircularQueue<T> {
   static final int DEFAULT_CAPACITY = 16;
   static final String BAD_CAPACITY = "Capacity should be greater than 0.";
   static final String QUEUE_FULL = "The CircularQueue is full, no more elements may be added until some are removed.";
+  static final String QUEUE_EMPTY = "The CircularQueue is empty, no more elements may be removed until some are added.";
 
   private final int capacity;
   private int write_index = 0;
