@@ -159,7 +159,7 @@ class CircularQueueTest {
 
   @ParameterizedTest
   @MethodSource("provideListOfElementsToAdd")
-  @DisplayName("peek at last added element in buffer")
+  @DisplayName("peek at the current read index of buffer")
   void element_1(List<Integer> inputList, int capacity){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
     for (int val : inputList) {
@@ -171,5 +171,14 @@ class CircularQueueTest {
       , () -> assertFalse(ring_buffer.isEmpty())
       , () -> assertEquals(inputList.getFirst(), ring_buffer.element())
     );
+  }
+
+  @Test
+  @DisplayName("peek at current read index of buffer when buffer is empty")
+  void element_1_fail() {
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>();
+
+    final Exception e = assertThrows(NoSuchElementException.class, ring_buffer::element);
+    assertEquals(CircularQueue.QUEUE_EMPTY, e.getMessage());
   }
 }
