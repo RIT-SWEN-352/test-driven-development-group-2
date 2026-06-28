@@ -47,4 +47,9 @@ public class Temperature {
   public double getValue() {
     return value;
   }
+
+  public TemperatureUnit getUnit() {
+    assert false : "Not yet implemented";
+    return null;
+  }
 }
