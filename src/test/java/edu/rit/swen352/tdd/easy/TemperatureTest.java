@@ -6,7 +6,11 @@ import static edu.rit.swen352.tdd.easy.Temperature.TemperatureUnit.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,41 +18,32 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test suite for the {@link Temperature} component.
  */
 class TemperatureTest {
+
   @ParameterizedTest(name = "Test value={0}, unit={1}")
   @CsvSource({"1,KELVIN", "460,FAHRENHEIT", "274,CELSIUS"})
   @DisplayName("ctor with both unit and value")
-  void ctor_1(int value, String unit) {
-    TemperatureUnit tunit = valueOf(unit); //need to convert
-    final Temperature temperatureTest = new Temperature(value, tunit);
+  void ctor_1(int value, TemperatureUnit unit) {
+    final Temperature temperatureTest = new Temperature(value, unit);
     assertAll("group assertions"
       , () -> assertNotNull(temperatureTest)
       , () -> assertEquals(value, temperatureTest.getValue(), "value is correct")
-      , () -> assertEquals(tunit, temperatureTest.getUnit(), "unit is correct")
+      , () -> assertEquals(unit, temperatureTest.getUnit(), "unit is correct")
     );
   }
 
-  @Test
+  @ParameterizedTest(name = "Test value={0}, unit={1}")
+  @MethodSource("tempsBelowAbsoluteZero")
   @DisplayName("ctor rejects impossible -1 kelvin temp")
-  void ctor_2() {
-    TemperatureUnit unit = KELVIN;
-    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-1, unit));
-    assertEquals("Value must be greater than or equal to 0 when unit is KELVIN", e.getMessage());
+  void ctor_2(double value, TemperatureUnit unit, String expectedErrorMsg) {
+    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(value, unit));
+    assertEquals(expectedErrorMsg, e.getMessage());
   }
-
-  @Test
-  @DisplayName("ctor rejects impossible -460 Fahrenheit temp")
-  void ctor_3() {
-    TemperatureUnit unit = FAHRENHEIT;
-    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-460, unit));
-    assertEquals("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT", e.getMessage());
-  }
-
-  @Test
-  @DisplayName("ctor rejects impossible -274 Celsius temp")
-  void ctor_4() {
-    TemperatureUnit unit = CELSIUS;
-    final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-274, unit));
-    assertEquals("Value must be greater than or equal to -273.15 when unit is CELSIUS", e.getMessage());
+  static Stream<Arguments> tempsBelowAbsoluteZero() {
+    return Stream.of(
+      Arguments.of(-0.1, KELVIN, Temperature.BAD_KELVIN_VALUE_MSG),
+      Arguments.of(-460, FAHRENHEIT, Temperature.BAD_FAHR_VALUE_MSG),
+      Arguments.of(-274, CELSIUS, Temperature.BAD_CELSIUS_VALUE_MSG)
+    );
   }
 
   @Test

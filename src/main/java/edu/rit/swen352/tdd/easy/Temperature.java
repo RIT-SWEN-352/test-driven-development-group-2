@@ -34,15 +34,18 @@ public class Temperature {
 
   Temperature (double value, TemperatureUnit unit) {
     if (unit == TemperatureUnit.KELVIN && value < 0) {
-      throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
+      throw new IllegalArgumentException(BAD_KELVIN_VALUE_MSG);
     } else if (unit == TemperatureUnit.FAHRENHEIT && value < -459.67) {
-      throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
+      throw new IllegalArgumentException(BAD_FAHR_VALUE_MSG);
     } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
-      throw new IllegalArgumentException("Value must be greater than or equal to -273.15 when unit is CELSIUS");
+      throw new IllegalArgumentException(BAD_CELSIUS_VALUE_MSG);
     }
     this.value = value;
     this.unit = unit;
   }
+  static final String BAD_KELVIN_VALUE_MSG = "Value must be greater than or equal to 0 when unit is KELVIN";
+  static final String BAD_FAHR_VALUE_MSG = "Value must be greater than or equal to -459.67 when unit is FAHRENHEIT";
+  static final String BAD_CELSIUS_VALUE_MSG = "Value must be greater than or equal to -273.15 when unit is CELSIUS";
 
   Temperature (double value) {
     this(value, TemperatureUnit.CELSIUS);
