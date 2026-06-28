@@ -36,6 +36,14 @@ class MyStackTest {
     }
 
     @Test
+    @DisplayName("ctor throws an exception if negative integer is set as capacity")
+    void MyStack_4() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new MyStack<>(-5);
+        });
+    }
+
+    @Test
     @DisplayName("getCapacity returns correct capacity")
     void getCapacity_1() {
         MyStack<Integer> CuT = new MyStack<>(1000);
