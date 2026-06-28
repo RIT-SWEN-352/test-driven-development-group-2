@@ -49,6 +49,17 @@ class TemperatureTest {
   }
 
   @Test
+  @DisplayName("ctor with no unit supplied")
+  void ctor_5() {
+    final Temperature temperatureTest = new Temperature(100);
+    assertAll("group assertions"
+      , () -> assertNotNull(temperatureTest)
+      , () -> assertEquals(100, temperatureTest.getValue(), "value is correct")
+      , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, temperatureTest.getUnit(), "unit is correct")
+    );
+  }
+
+  @Test
   @DisplayName("convert valid fahrenheit to celsius")
   void convert_1() {
     Temperature fTemp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
