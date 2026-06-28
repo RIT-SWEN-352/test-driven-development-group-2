@@ -71,6 +71,16 @@ class MyStackTest {
         assertEquals(CuT.size(), 2);
     }
 
+    @Test
+    @DisplayName("push to a full stack throws an exception")
+    void push_2() {
+        MyStack<Integer> CuT = new MyStack<>(1);
+        CuT.push(10);
+        assertThrows(IllegalStateException.class, () -> {
+            CuT.push(5);
+        });
+    }
+
 
 
 }
