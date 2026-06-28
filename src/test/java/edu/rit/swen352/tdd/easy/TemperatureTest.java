@@ -19,7 +19,7 @@ class TemperatureTest {
     final Temperature temperatureTest = new Temperature(value, tunit);
     assertAll("group assertions"
       , () -> assertNotNull(temperatureTest)
-      , () -> assertEquals(value, temperatureTest.value, "value is correct")
+      , () -> assertEquals(value, temperatureTest.getValue(), "value is correct")
       , () -> assertEquals(tunit, temperatureTest.unit, "unit is correct")
     );
   }

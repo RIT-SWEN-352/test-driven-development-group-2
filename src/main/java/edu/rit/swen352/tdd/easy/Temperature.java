@@ -43,4 +43,9 @@ public class Temperature {
     this.value = value;
     this.unit = unit;
   }
+
+  public double getValue() {
+    assert false : "Not yet implemented";
+    return 0;
+  }
 }
