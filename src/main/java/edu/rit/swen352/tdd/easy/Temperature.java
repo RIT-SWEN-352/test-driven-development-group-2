@@ -79,6 +79,8 @@ public class Temperature {
   public String toString(){
     if (this.unit == TemperatureUnit.CELSIUS) {
       return String.format("%.2f°C", this.value);
+    } else if(this.unit == TemperatureUnit.FAHRENHEIT) {
+      return String.format("%.2f°F", this.value);
     }
     return null;
   }
