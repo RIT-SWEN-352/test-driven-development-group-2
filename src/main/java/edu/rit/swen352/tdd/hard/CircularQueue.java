@@ -90,7 +90,6 @@ public class CircularQueue<T> {
   }
 
   public T element() {
-    assert false : "Not yet implemented";
-    return null;
+    return this.buffer.get(this.read_index);
   }
 }

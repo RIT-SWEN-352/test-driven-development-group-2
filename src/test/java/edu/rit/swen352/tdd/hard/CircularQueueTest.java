@@ -169,7 +169,7 @@ class CircularQueueTest {
     assertAll("group all add assertions"
       , () -> assertNotNull(ring_buffer)
       , () -> assertFalse(ring_buffer.isEmpty())
-      , () -> assertEquals(inputList.getLast(), ring_buffer.element())
+      , () -> assertEquals(inputList.getFirst(), ring_buffer.element())
     );
   }
 }
