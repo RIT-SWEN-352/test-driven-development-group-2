@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -48,4 +50,52 @@ import java.util.NoSuchElementException;
  * @param <T> the type of elements in the queue.
  */
 public class CircularQueue<T> {
+  static final int DEFAULT_CAPACITY = 16;
+  static final String BAD_CAPACITY = "Capacity should be greater than 0.";
+  static final String BAD_ELEMENT = "Elements should be non-null.";
+  static final String QUEUE_FULL = "The CircularQueue is full, no more elements may be added until some are removed.";
+  static final String QUEUE_EMPTY = "The CircularQueue is empty, no more elements may be removed until some are added.";
+
+  private final int capacity;
+  private int write_index = 0;
+  private int read_index = 0;
+  private final List<T> buffer;
+
+  CircularQueue(int capacity) {
+    if (capacity < 1){
+      throw new IllegalArgumentException(BAD_CAPACITY);
+    }
+    this.capacity = capacity;
+    this.buffer = new ArrayList<>(this.capacity);
+  }
+
+  CircularQueue() { this(DEFAULT_CAPACITY); }
+  public int getCapacity() { return this.capacity; }
+  public boolean isEmpty(){ return write_index == read_index; }
+
+  public void add(T element) {
+    if ((this.write_index + 1) % this.capacity == this.read_index){
+      throw new IllegalStateException(QUEUE_FULL);
+    } else if (element == null) {
+      throw new IllegalArgumentException(BAD_ELEMENT);
+    }
+    this.buffer.add(this.write_index, element);
+    this.write_index = (this.write_index + 1) % this.capacity;
+  }
+
+  public T remove() {
+    if (isEmpty()) {
+      throw new NoSuchElementException(QUEUE_EMPTY);
+    }
+    T val = this.buffer.get(this.read_index);
+    this.read_index = (this.read_index + 1) % this.capacity;
+    return val;
+  }
+
+  public T element() {
+    if (isEmpty()) {
+      throw new NoSuchElementException(QUEUE_EMPTY);
+    }
+    return this.buffer.get(this.read_index);
+  }
 }
