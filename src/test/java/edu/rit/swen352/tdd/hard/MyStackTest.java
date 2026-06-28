@@ -98,21 +98,30 @@ class MyStackTest {
     @Test
     @DisplayName("pop on empty stack throws exception")
     void pop_2() {
-        MyStack<Integer> stack = new MyStack<>();
+        MyStack<Integer> CuT = new MyStack<>();
 
         assertThrows(NoSuchElementException.class, () -> {
-            stack.pop();
+            CuT.pop();
         });
     }
 
     @Test
     @DisplayName("peek returns top element without removing")
     void peek_1() {
-         MyStack<Integer> CuT = new MyStack<>();
+        MyStack<Integer> CuT = new MyStack<>();
         CuT.push(10);
         
         assertEquals(10, CuT.peek());
         assertEquals(1, CuT.size());
+    }
+
+    @Test
+    @DisplayName("peek returns NoSuchElementException if stack is empty")
+    void peek_2() {
+        MyStack<Integer> CuT = new MyStack<>();
+        assertThrows(NoSuchElementException.class, () -> {
+            CuT.peek();
+        });
     }
 
 
