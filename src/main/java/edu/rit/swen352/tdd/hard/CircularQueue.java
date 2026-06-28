@@ -51,7 +51,12 @@ public class CircularQueue<T> {
   static final int DEFAULT_CAPACITY = 16;
   final int capacity;
 
-  CircularQueue(){
+  CircularQueue(int capacity) {
+    assert false : "Not yet implemented";
+    this.capacity = 0;
+  }
+
+  CircularQueue() {
     capacity = DEFAULT_CAPACITY;
   }
 }
