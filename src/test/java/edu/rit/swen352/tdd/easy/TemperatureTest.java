@@ -1,5 +1,8 @@
 package edu.rit.swen352.tdd.easy;
 
+import edu.rit.swen352.tdd.easy.Temperature.TemperatureUnit;
+import static edu.rit.swen352.tdd.easy.Temperature.TemperatureUnit.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +18,7 @@ class TemperatureTest {
   @CsvSource({"1,KELVIN", "460,FAHRENHEIT", "274,CELSIUS"})
   @DisplayName("ctor with both unit and value")
   void ctor_1(int value, String unit) {
-    Temperature.TemperatureUnit tunit = Temperature.TemperatureUnit.valueOf(unit); //need to convert
+    TemperatureUnit tunit = valueOf(unit); //need to convert
     final Temperature temperatureTest = new Temperature(value, tunit);
     assertAll("group assertions"
       , () -> assertNotNull(temperatureTest)
@@ -27,7 +30,7 @@ class TemperatureTest {
   @Test
   @DisplayName("ctor rejects impossible -1 kelvin temp")
   void ctor_2() {
-    Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.KELVIN;
+    TemperatureUnit unit = KELVIN;
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-1, unit));
     assertEquals("Value must be greater than or equal to 0 when unit is KELVIN", e.getMessage());
   }
@@ -35,7 +38,7 @@ class TemperatureTest {
   @Test
   @DisplayName("ctor rejects impossible -460 Fahrenheit temp")
   void ctor_3() {
-    Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.FAHRENHEIT;
+    TemperatureUnit unit = FAHRENHEIT;
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-460, unit));
     assertEquals("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT", e.getMessage());
   }
@@ -43,7 +46,7 @@ class TemperatureTest {
   @Test
   @DisplayName("ctor rejects impossible -274 Celsius temp")
   void ctor_4() {
-    Temperature.TemperatureUnit unit = Temperature.TemperatureUnit.CELSIUS;
+    TemperatureUnit unit = CELSIUS;
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(-274, unit));
     assertEquals("Value must be greater than or equal to -273.15 when unit is CELSIUS", e.getMessage());
   }
@@ -55,72 +58,72 @@ class TemperatureTest {
     assertAll("group assertions"
       , () -> assertNotNull(temperatureTest)
       , () -> assertEquals(100, temperatureTest.getValue(), "value is correct")
-      , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, temperatureTest.getUnit(), "unit is correct")
+      , () -> assertEquals(CELSIUS, temperatureTest.getUnit(), "unit is correct")
     );
   }
 
   @Test
   @DisplayName("convert valid fahrenheit to celsius")
   void convert_1() {
-    Temperature fTemp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
-    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.CELSIUS);
+    Temperature fTemp = new Temperature(212, FAHRENHEIT);
+    Temperature cTemp = fTemp.convertTo(CELSIUS);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
       , () -> assertEquals(100, cTemp.getValue())
-      , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, cTemp.getUnit())
+      , () -> assertEquals(CELSIUS, cTemp.getUnit())
     );
   }
 
   @Test
   @DisplayName("convert valid fahrenheit to kelvin")
   void convert_2() {
-    Temperature fTemp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
-    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.KELVIN);
+    Temperature fTemp = new Temperature(212, FAHRENHEIT);
+    Temperature cTemp = fTemp.convertTo(KELVIN);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
       , () -> assertEquals(373.15, cTemp.getValue())
-      , () -> assertEquals(Temperature.TemperatureUnit.KELVIN, cTemp.getUnit())
+      , () -> assertEquals(KELVIN, cTemp.getUnit())
     );
   }
 
   @Test
   @DisplayName("convert valid celsius to kelvin")
   void convert_3() {
-    Temperature fTemp = new Temperature(100, Temperature.TemperatureUnit.CELSIUS);
-    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.KELVIN);
+    Temperature fTemp = new Temperature(100, CELSIUS);
+    Temperature cTemp = fTemp.convertTo(KELVIN);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
       , () -> assertEquals(373.15, cTemp.getValue())
-      , () -> assertEquals(Temperature.TemperatureUnit.KELVIN, cTemp.getUnit())
+      , () -> assertEquals(KELVIN, cTemp.getUnit())
     );
   }
 
   @Test
   @DisplayName("convert valid kelvin to fahrenheit")
   void convert_4() {
-    Temperature fTemp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
-    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.FAHRENHEIT);
+    Temperature fTemp = new Temperature(373.15, KELVIN);
+    Temperature cTemp = fTemp.convertTo(FAHRENHEIT);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
       , () -> assertEquals(212, cTemp.getValue())
-      , () -> assertEquals(Temperature.TemperatureUnit.FAHRENHEIT, cTemp.getUnit())
+      , () -> assertEquals(FAHRENHEIT, cTemp.getUnit())
     );
   }
 
   @Test
   @DisplayName("convert valid kelvin to celsius")
   void convert_5() {
-    Temperature fTemp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
-    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.CELSIUS);
+    Temperature fTemp = new Temperature(373.15, KELVIN);
+    Temperature cTemp = fTemp.convertTo(CELSIUS);
 
     assertAll("group convert assertions"
       , () -> assertNotNull(cTemp)
       , () -> assertEquals(100, cTemp.getValue())
-      , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, cTemp.getUnit())
+      , () -> assertEquals(CELSIUS, cTemp.getUnit())
     );
   }
 
@@ -134,14 +137,14 @@ class TemperatureTest {
   @Test
   @DisplayName("toString fahrenheit shows correctly")
   void string_2(){
-    Temperature temp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
+    Temperature temp = new Temperature(212, FAHRENHEIT);
     assertEquals("212.00°F", temp.toString());
   }
 
   @Test
   @DisplayName("toString kelvin shows correctly")
   void string_3(){
-    Temperature temp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
+    Temperature temp = new Temperature(373.15, KELVIN);
     assertEquals("373.15K", temp.toString());
   }
 }
