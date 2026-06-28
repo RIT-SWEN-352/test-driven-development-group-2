@@ -78,4 +78,9 @@ public class CircularQueue<T> {
     this.buffer.add(this.write_index, element);
     this.write_index = (this.write_index + 1) % this.capacity;
   }
+
+  public T remove() {
+    assert false : "Not yet implemented";
+    return null;
+  }
 }

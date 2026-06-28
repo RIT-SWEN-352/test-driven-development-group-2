@@ -7,6 +7,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -86,5 +89,29 @@ class CircularQueueTest {
 
     final Exception e = assertThrows(IllegalStateException.class, () -> ring_buffer.add(inputList.getLast()));
     assertEquals(CircularQueue.QUEUE_FULL, e.getMessage());
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideListOfElementsToAdd")
+  @DisplayName("add valid number of valid elements to buffer")
+  void remove_1(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
+    for (int val : inputList) {
+      ring_buffer.add(val);
+    }
+
+    List<Integer> removed = new ArrayList<>(capacity);
+    for (int i = 0; i < inputList.size(); i++) {
+      removed.add(ring_buffer.remove());
+    }
+
+    Collections.sort(inputList);
+    Collections.sort(removed);
+
+    assertAll("group removal assertions"
+      , () -> assertEquals(inputList, removed)
+      , () -> assertTrue(ring_buffer.isEmpty())
+      , () -> assertEquals(capacity, removed.size())
+    );
   }
 }
