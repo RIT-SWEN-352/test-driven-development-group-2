@@ -56,6 +56,6 @@ public class CircularQueue<T> {
   }
 
   CircularQueue() {
-    capacity = DEFAULT_CAPACITY;
+    this(DEFAULT_CAPACITY);
   }
 }
