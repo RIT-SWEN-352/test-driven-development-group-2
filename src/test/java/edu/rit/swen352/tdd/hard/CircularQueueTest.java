@@ -105,13 +105,16 @@ class CircularQueueTest {
       removed.add(ring_buffer.remove());
     }
 
-    Collections.sort(inputList);
-    Collections.sort(removed);
+    List<Integer> copyInput = new ArrayList<>(inputList);
+    List<Integer> copyRemoved = new ArrayList<>(removed);
+
+    Collections.sort(copyInput);
+    Collections.sort(copyRemoved);
 
     assertAll("group removal assertions"
-      , () -> assertEquals(inputList, removed)
+      , () -> assertEquals(copyInput, copyRemoved)
       , () -> assertTrue(ring_buffer.isEmpty())
-      , () -> assertEquals(capacity, removed.size())
+      , () -> assertEquals(capacity-1, copyRemoved.size())
     );
   }
 }

@@ -80,7 +80,8 @@ public class CircularQueue<T> {
   }
 
   public T remove() {
-    assert false : "Not yet implemented";
-    return null;
+    T val = this.buffer.get(this.read_index);
+    this.read_index = (this.read_index + 1) % this.capacity;
+    return val;
   }
 }
