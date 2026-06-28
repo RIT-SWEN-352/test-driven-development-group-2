@@ -26,26 +26,32 @@ package edu.rit.swen352.tdd.easy;
  */
 public class Temperature {
   public enum TemperatureUnit {
-    CELSIUS, FAHRENHEIT, KELVIN
+    CELSIUS(-273.15),
+    FAHRENHEIT(-459.67),
+    KELVIN(0)
+    ;
+
+    public boolean isBelowAbsoluteZero(final double value) {
+      return value <= absoluteZeroThreshold;
+    }
+
+    private final double absoluteZeroThreshold;
+    TemperatureUnit(double absoluteZeroThreshold) {
+      this.absoluteZeroThreshold = absoluteZeroThreshold;
+    }
   }
 
   final double value;
   final TemperatureUnit unit;
 
   Temperature (double value, TemperatureUnit unit) {
-    if (unit == TemperatureUnit.KELVIN && value < 0) {
-      throw new IllegalArgumentException(BAD_KELVIN_VALUE_MSG);
-    } else if (unit == TemperatureUnit.FAHRENHEIT && value < -459.67) {
-      throw new IllegalArgumentException(BAD_FAHR_VALUE_MSG);
-    } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
-      throw new IllegalArgumentException(BAD_CELSIUS_VALUE_MSG);
+    if (unit.isBelowAbsoluteZero(value)) {
+      throw new IllegalArgumentException(BAD_TEMP_VALUE);
     }
     this.value = value;
     this.unit = unit;
   }
-  static final String BAD_KELVIN_VALUE_MSG = "Value must be greater than or equal to 0 when unit is KELVIN";
-  static final String BAD_FAHR_VALUE_MSG = "Value must be greater than or equal to -459.67 when unit is FAHRENHEIT";
-  static final String BAD_CELSIUS_VALUE_MSG = "Value must be greater than or equal to -273.15 when unit is CELSIUS";
+  static final String BAD_TEMP_VALUE = "Value must be greater than or equal to absolute zero.";
 
   Temperature (double value) {
     this(value, TemperatureUnit.CELSIUS);

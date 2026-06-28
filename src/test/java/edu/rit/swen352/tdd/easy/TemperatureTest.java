@@ -34,15 +34,15 @@ class TemperatureTest {
   @ParameterizedTest(name = "Test value={0}, unit={1}")
   @MethodSource("tempsBelowAbsoluteZero")
   @DisplayName("ctor rejects impossible -1 kelvin temp")
-  void ctor_2(double value, TemperatureUnit unit, String expectedErrorMsg) {
+  void ctor_2(double value, TemperatureUnit unit) {
     final Exception e = assertThrows(IllegalArgumentException.class, () -> new Temperature(value, unit));
-    assertEquals(expectedErrorMsg, e.getMessage());
+    assertEquals(Temperature.BAD_TEMP_VALUE, e.getMessage());
   }
   static Stream<Arguments> tempsBelowAbsoluteZero() {
     return Stream.of(
-      Arguments.of(-0.1, KELVIN, Temperature.BAD_KELVIN_VALUE_MSG),
-      Arguments.of(-460, FAHRENHEIT, Temperature.BAD_FAHR_VALUE_MSG),
-      Arguments.of(-274, CELSIUS, Temperature.BAD_CELSIUS_VALUE_MSG)
+      Arguments.of(-0.1, KELVIN),
+      Arguments.of(-460, FAHRENHEIT),
+      Arguments.of(-274, CELSIUS)
     );
   }
 
