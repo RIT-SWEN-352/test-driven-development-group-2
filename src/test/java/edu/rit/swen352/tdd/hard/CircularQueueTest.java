@@ -3,7 +3,12 @@ package edu.rit.swen352.tdd.hard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,5 +50,28 @@ class CircularQueueTest {
   void empty_1(){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>();
     assertTrue(ring_buffer.isEmpty());
+  }
+
+  static Stream<Arguments> provideListOfElementsToAdd() {
+    return Stream.of(
+      Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7), 8),
+      Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7, 8), 9),
+      Arguments.of(List.of(1, 2, 3, 4), 5)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideListOfElementsToAdd")
+  @DisplayName("add valid number of valid elements to buffer")
+  void add_1(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
+    for (int val : inputList) {
+      ring_buffer.add(val);
+    }
+
+    assertAll("group all add assertions"
+      , () -> assertNotNull(ring_buffer)
+      , () -> assertFalse(ring_buffer.isEmpty())
+    );
   }
 }
