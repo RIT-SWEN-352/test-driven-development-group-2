@@ -52,6 +52,8 @@ public class CircularQueue<T> {
   static final String BAD_CAPACITY = "Capacity should be greater than 0.";
 
   final int capacity;
+  private int write_index = 0;
+  private int read_index = 0;
 
   CircularQueue(int capacity) {
     if (capacity < 1){
@@ -68,8 +70,5 @@ public class CircularQueue<T> {
     return this.capacity;
   }
 
-  public boolean isEmpty(){
-    assert false : "Not yet implemented";
-    return false;
-  }
+  public boolean isEmpty(){ return write_index == read_index; }
 }
