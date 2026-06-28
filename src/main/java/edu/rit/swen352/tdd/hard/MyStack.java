@@ -86,8 +86,12 @@ public class MyStack<T> {
         size++;
     }
 
-    public void pop() {
-        assert false: "Not yet implemented";
+    @SuppressWarnings("unchecked")
+    public T pop() {
+        size--;
+        T element = (T) elements[size];
+        elements[size] = null;
+        return element; 
     }
 
 }

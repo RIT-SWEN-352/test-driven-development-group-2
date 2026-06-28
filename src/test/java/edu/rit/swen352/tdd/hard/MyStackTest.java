@@ -87,8 +87,9 @@ class MyStackTest {
          MyStack<String> CuT = new MyStack<>();
         CuT.push("A");
         CuT.push("B");
-        CuT.pop();
         
+        
+        assertEquals("B", CuT.pop());
         assertEquals(1, CuT.size());
     }
 
