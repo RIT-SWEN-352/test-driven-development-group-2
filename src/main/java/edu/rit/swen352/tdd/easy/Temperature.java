@@ -28,4 +28,60 @@ public class Temperature {
   public enum TemperatureUnit {
     CELSIUS, FAHRENHEIT, KELVIN
   }
+
+  final double value;
+  final TemperatureUnit unit;
+
+  Temperature (double value, TemperatureUnit unit) {
+    if (unit == TemperatureUnit.KELVIN && value < 0) {
+      throw new IllegalArgumentException("Value must be greater than or equal to 0 when unit is KELVIN");
+    } else if (unit == TemperatureUnit.FAHRENHEIT && value < -459.67) {
+      throw new IllegalArgumentException("Value must be greater than or equal to -459.67 when unit is FAHRENHEIT");
+    } else if (unit == TemperatureUnit.CELSIUS && value < -273.15) {
+      throw new IllegalArgumentException("Value must be greater than or equal to -273.15 when unit is CELSIUS");
+    }
+    this.value = value;
+    this.unit = unit;
+  }
+
+  Temperature (double value) {
+    this(value, TemperatureUnit.CELSIUS);
+  }
+
+  public double getValue() {
+    return value;
+  }
+
+  public TemperatureUnit getUnit() {
+    return unit;
+  }
+
+  public Temperature convertTo(TemperatureUnit unit){
+    double currentValue = this.value;
+    TemperatureUnit currentUnit = this.unit;
+
+    while (currentUnit != unit) {
+      if (currentUnit == TemperatureUnit.FAHRENHEIT) {
+        currentValue = (currentValue - 32) * (5.0/9.0);
+        currentUnit = TemperatureUnit.CELSIUS;
+      } else if (currentUnit == TemperatureUnit.CELSIUS) {
+        currentValue += 273.15;
+        currentUnit = TemperatureUnit.KELVIN;
+      } else if (currentUnit == TemperatureUnit.KELVIN) {
+        currentValue = (currentValue - 273.15) * (9.0/5.0) + 32;
+        currentUnit = TemperatureUnit.FAHRENHEIT;
+      }
+    }
+
+    return new Temperature(currentValue, currentUnit);
+  }
+
+  public String toString(){
+    if (this.unit == TemperatureUnit.CELSIUS) {
+      return String.format("%.2f°C", this.value);
+    } else if(this.unit == TemperatureUnit.FAHRENHEIT) {
+      return String.format("%.2f°F", this.value);
+    }
+    return String.format("%.2fK", this.value);
+  }
 }
