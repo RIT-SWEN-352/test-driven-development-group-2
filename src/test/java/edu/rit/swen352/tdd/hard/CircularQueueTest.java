@@ -84,7 +84,7 @@ class CircularQueueTest {
   void add_1_fail(List<Integer> inputList, int capacity){
     final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity-1);
     for (int i = 0; i < inputList.size() - 1; i++) {
-      ring_buffer.add(inputList.indexOf(i));
+      ring_buffer.add(inputList.get(i));
     }
 
     final Exception e = assertThrows(IllegalStateException.class, () -> ring_buffer.add(inputList.getLast()));
