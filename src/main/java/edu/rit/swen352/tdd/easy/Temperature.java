@@ -77,7 +77,9 @@ public class Temperature {
   }
 
   public String toString(){
-    assert false: "Not yet implemented";
+    if (this.unit == TemperatureUnit.CELSIUS) {
+      return String.format("%.2f°C", this.value);
+    }
     return null;
   }
 }

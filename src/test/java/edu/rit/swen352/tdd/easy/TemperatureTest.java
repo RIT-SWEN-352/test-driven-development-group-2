@@ -128,6 +128,6 @@ class TemperatureTest {
   @DisplayName("toString celsius shows correctly")
   void string_1(){
     Temperature temp = new Temperature(100);
-    assertEquals("100°C", temp.toString());
+    assertEquals("100.00°C", temp.toString());
   }
 }
