@@ -58,68 +58,28 @@ class TemperatureTest {
     );
   }
 
-  @Test
-  @DisplayName("convert valid fahrenheit to celsius")
-  void convert_1() {
-    Temperature fTemp = new Temperature(212, FAHRENHEIT);
-    Temperature cTemp = fTemp.convertTo(CELSIUS);
-
-    assertAll("group convert assertions"
-      , () -> assertNotNull(cTemp)
-      , () -> assertEquals(100, cTemp.getValue())
-      , () -> assertEquals(CELSIUS, cTemp.getUnit())
-    );
-  }
-
-  @Test
-  @DisplayName("convert valid Fahrenheit to kelvin")
-  void convert_2() {
-    Temperature fTemp = new Temperature(212, FAHRENHEIT);
-    Temperature cTemp = fTemp.convertTo(KELVIN);
-
-    assertAll("group convert assertions"
-      , () -> assertNotNull(cTemp)
-      , () -> assertEquals(373.15, cTemp.getValue())
-      , () -> assertEquals(KELVIN, cTemp.getUnit())
-    );
-  }
-
-  @Test
-  @DisplayName("convert valid Celsius to kelvin")
-  void convert_3() {
-    Temperature fTemp = new Temperature(100, CELSIUS);
-    Temperature cTemp = fTemp.convertTo(KELVIN);
-
-    assertAll("group convert assertions"
-      , () -> assertNotNull(cTemp)
-      , () -> assertEquals(373.15, cTemp.getValue())
-      , () -> assertEquals(KELVIN, cTemp.getUnit())
-    );
-  }
-
-  @Test
-  @DisplayName("convert valid Kelvin to Fahrenheit")
-  void convert_4() {
-    Temperature fTemp = new Temperature(373.15, KELVIN);
-    Temperature cTemp = fTemp.convertTo(FAHRENHEIT);
-
-    assertAll("group convert assertions"
-      , () -> assertNotNull(cTemp)
-      , () -> assertEquals(212, cTemp.getValue())
-      , () -> assertEquals(FAHRENHEIT, cTemp.getUnit())
-    );
-  }
-
-  @Test
-  @DisplayName("convert valid kelvin to celsius")
-  void convert_5() {
-    Temperature fTemp = new Temperature(373.15, KELVIN);
-    Temperature cTemp = fTemp.convertTo(CELSIUS);
-
-    assertAll("group convert assertions"
-      , () -> assertNotNull(cTemp)
-      , () -> assertEquals(100, cTemp.getValue())
-      , () -> assertEquals(CELSIUS, cTemp.getUnit())
+  @ParameterizedTest(name = "Test {0}-{1} to {2} => \"{3}\"")
+  @DisplayName("convertTo")
+  @CsvSource({
+    "100.0, CELSIUS,    CELSIUS,    100.0",
+    "100.0, CELSIUS,    FAHRENHEIT, 212.0",
+    "100.0, CELSIUS,    KELVIN,     373.15",
+    " 32.0, FAHRENHEIT, FAHRENHEIT, 32.0",
+    " 32.0, FAHRENHEIT, CELSIUS,    0.0",
+    " 32.0, FAHRENHEIT, KELVIN,     273.15",
+    " 32.0, KELVIN,     KELVIN,     32.0",
+    " 32.0, KELVIN,     CELSIUS,    -241.15",
+    " 32.0, KELVIN,     FAHRENHEIT, -402.07",
+    "  0.1, KELVIN,     KELVIN,     0.1",
+    "  0.1, KELVIN,     CELSIUS,    -273.05",
+    "  0.1, KELVIN,     FAHRENHEIT, -459.49",
+  })
+  void convertTo(double fromValue, TemperatureUnit fromUnit, TemperatureUnit toUnit, double expectedConvertedValue) {
+    final Temperature CuT = new Temperature(fromValue, fromUnit);
+    final Temperature newTemp = CuT.convertTo(toUnit);
+    assertAll("group assertions"
+      , () -> assertEquals(expectedConvertedValue, newTemp.getValue(), 0.01, "value is correct")
+      , () -> assertEquals(toUnit, newTemp.getUnit(), "unit is correct")
     );
   }
 
