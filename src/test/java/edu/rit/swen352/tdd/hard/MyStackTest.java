@@ -81,6 +81,17 @@ class MyStackTest {
         });
     }
 
+    @Test
+    @DisplayName("pop removes and returns the top element")
+    void pop_1() {
+         MyStack<String> CuT = new MyStack<>();
+        CuT.push("A");
+        CuT.push("B");
+        CuT.pop();
+        
+        assertEquals(1, CuT.size());
+    }
+
 
 
 }

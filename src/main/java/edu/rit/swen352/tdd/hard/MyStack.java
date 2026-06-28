@@ -86,4 +86,8 @@ public class MyStack<T> {
         size++;
     }
 
+    public void pop() {
+        assert false: "Not yet implemented";
+    }
+
 }
