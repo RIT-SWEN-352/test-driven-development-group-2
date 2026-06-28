@@ -101,9 +101,9 @@ public class MyStack<T> {
         return element; 
     }
 
+    @SuppressWarnings("unchecked")
     public T peek() {
-        assert false: "Not yet implemented";
-        return null;
+        return (T) elements[size - 1];
     }
 
 
