@@ -91,6 +91,15 @@ class CircularQueueTest {
     assertEquals(CircularQueue.QUEUE_FULL, e.getMessage());
   }
 
+  @Test
+  @DisplayName("add null to buffer")
+  void add_2(){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>();
+
+    final Exception e = assertThrows(IllegalArgumentException.class, () -> ring_buffer.add(null));
+    assertEquals(CircularQueue.BAD_ELEMENT, e.getMessage());
+  }
+
   @ParameterizedTest
   @MethodSource("provideListOfElementsToAdd")
   @DisplayName("remove valid number of valid elements from buffer")
