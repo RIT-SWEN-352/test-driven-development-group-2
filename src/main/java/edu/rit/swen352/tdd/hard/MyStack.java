@@ -49,14 +49,16 @@ public class MyStack<T> {
 
     private int capacity;
     private int size;
+    private final Object[] elements;
 
     public MyStack(int capacity) {
         this.capacity = capacity;
         this.size = 0;
+        this.elements = new Object[capacity];
     }
 
     public MyStack() {
-        this.capacity = 16;
+        this(16);
     }
 
     public int getCapacity() {
@@ -72,7 +74,16 @@ public class MyStack<T> {
     }
 
     public void push(T element) {
-        assert false: "Not yet implemented";
+        if (size == capacity) {
+            throw new IllegalStateException("Stack is full");
+        }
+
+        if (element == null) {
+            throw new NullPointerException("Stack cannot contain null elements");
+        }
+
+        elements[size] = element;
+        size++;
     }
 
 }
