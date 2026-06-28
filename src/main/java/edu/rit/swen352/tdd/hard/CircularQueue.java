@@ -88,4 +88,9 @@ public class CircularQueue<T> {
     this.read_index = (this.read_index + 1) % this.capacity;
     return val;
   }
+
+  public T element() {
+    assert false : "Not yet implemented";
+    return null;
+  }
 }

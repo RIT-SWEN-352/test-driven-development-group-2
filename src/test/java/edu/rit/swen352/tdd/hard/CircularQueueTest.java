@@ -156,4 +156,20 @@ class CircularQueueTest {
 
     assertTrue(ring_buffer.isEmpty());
   }
+
+  @ParameterizedTest
+  @MethodSource("provideListOfElementsToAdd")
+  @DisplayName("peek at last added element in buffer")
+  void element_1(List<Integer> inputList, int capacity){
+    final CircularQueue<Integer> ring_buffer = new CircularQueue<>(capacity);
+    for (int val : inputList) {
+      ring_buffer.add(val);
+    }
+
+    assertAll("group all add assertions"
+      , () -> assertNotNull(ring_buffer)
+      , () -> assertFalse(ring_buffer.isEmpty())
+      , () -> assertEquals(inputList.getLast(), ring_buffer.element())
+    );
+  }
 }
