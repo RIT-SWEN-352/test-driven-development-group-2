@@ -90,7 +90,7 @@ public class MyStack<T> {
 
     @SuppressWarnings("unchecked")
     public T pop() {
-         if (isEmpty()) {
+        if (isEmpty()) {
             throw new NoSuchElementException("Stack is empty");
         }
 
@@ -103,6 +103,10 @@ public class MyStack<T> {
 
     @SuppressWarnings("unchecked")
     public T peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack is empty");
+        }
+
         return (T) elements[size - 1];
     }
 
