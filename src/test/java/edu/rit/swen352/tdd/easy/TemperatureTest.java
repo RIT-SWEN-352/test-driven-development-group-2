@@ -137,4 +137,11 @@ class TemperatureTest {
     Temperature temp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
     assertEquals("212.00°F", temp.toString());
   }
+
+  @Test
+  @DisplayName("toString kelvin shows correctly")
+  void string_3(){
+    Temperature temp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
+    assertEquals("373.15K", temp.toString());
+  }
 }
