@@ -75,4 +75,9 @@ public class Temperature {
 
     return new Temperature(currentValue, currentUnit);
   }
+
+  public String toString(){
+    assert false: "Not yet implemented";
+    return null;
+  }
 }

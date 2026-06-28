@@ -123,4 +123,11 @@ class TemperatureTest {
       , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, cTemp.getUnit())
     );
   }
+
+  @Test
+  @DisplayName("toString celsius shows correctly")
+  void string_1(){
+    Temperature temp = new Temperature(100);
+    assertEquals("100°C", temp.toString());
+  }
 }
