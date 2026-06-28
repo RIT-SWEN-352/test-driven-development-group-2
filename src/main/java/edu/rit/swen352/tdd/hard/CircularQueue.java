@@ -48,4 +48,11 @@ import java.util.NoSuchElementException;
  * @param <T> the type of elements in the queue.
  */
 public class CircularQueue<T> {
+  static final int DEFAULT_CAPACITY = 16;
+  final int capacity;
+
+  CircularQueue(){
+    assert false : "Not yet implemented";
+    capacity = 0;
+  }
 }
