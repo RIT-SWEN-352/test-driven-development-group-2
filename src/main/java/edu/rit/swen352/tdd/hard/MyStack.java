@@ -71,4 +71,8 @@ public class MyStack<T> {
         return size;
     }
 
+    public void push(T element) {
+        assert false: "Not yet implemented";
+    }
+
 }
