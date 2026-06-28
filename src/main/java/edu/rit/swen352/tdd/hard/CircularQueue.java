@@ -49,6 +49,8 @@ import java.util.NoSuchElementException;
  */
 public class CircularQueue<T> {
   static final int DEFAULT_CAPACITY = 16;
+  static final String BAD_CAPACITY = "Capacity should be greater than 0.";
+
   final int capacity;
 
   CircularQueue(int capacity) {

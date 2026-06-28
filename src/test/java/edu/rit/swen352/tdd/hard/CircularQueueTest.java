@@ -31,4 +31,12 @@ class CircularQueueTest {
       , () -> assertEquals(capacity, ring_buffer.capacity)
     );
   }
+
+  @ParameterizedTest(name = "Test capacity={0}")
+  @CsvSource({"0", "-10", "-16", "-100", "-256"})
+  @DisplayName("ctor with invalid size")
+  void ctor_2_fail(int capacity){
+    final Exception e = assertThrows(IllegalArgumentException.class, () -> new CircularQueue<>(capacity));
+    assertEquals(CircularQueue.BAD_CAPACITY, e.getMessage());
+  }
 }
