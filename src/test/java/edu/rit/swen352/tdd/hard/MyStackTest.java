@@ -39,11 +39,13 @@ class MyStackTest {
         assertTrue(CuT.isEmpty());
     }
 
-    // @Test
-    // @DisplayName("isEmpty returning false for non-empty stack")
-    // void isEmpty_2() {
-            //TODO: after push is implemented, write this test
-    // }
+    @Test
+    @DisplayName("isEmpty returning false for non-empty stack")
+    void isEmpty_2() {
+            MyStack<Integer> CuT = new MyStack<>();
+            CuT.push(10);
+            assertFalse(CuT.isEmpty());
+    }
 
     @Test
     @DisplayName("size is 0 for empty stack")
