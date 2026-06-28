@@ -54,14 +54,16 @@ class MyStackTest {
         assertEquals(CuT.size(), 0);
     }
 
-    // @Test
-    // @DisplayName("size is not 0 for non-empty stack")
-    // void size_2() {
-            //TODO: after push is implemented, write this test
-    // }
+    @Test
+    @DisplayName("size is not 0 for non-empty stack")
+    void size_2() {
+            MyStack<Integer> CuT = new MyStack<>();
+            CuT.push(10);
+            assertEquals(1, CuT.size());
+    }
 
     @Test
-    @DisplayName("push adds an element to stack")
+    @DisplayName("push adds elements to stack")
     void push_1() {
         MyStack<Integer> CuT = new MyStack<>();
         CuT.push(5);
