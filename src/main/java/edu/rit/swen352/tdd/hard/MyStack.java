@@ -54,6 +54,9 @@ public class MyStack<T> {
     private final Object[] elements;
 
     public MyStack(int capacity) {
+        if(capacity < 0) {
+            throw new IllegalArgumentException("Capacity cannot be negative");
+        }
         this.capacity = capacity;
         this.size = 0;
         this.elements = new Object[capacity];

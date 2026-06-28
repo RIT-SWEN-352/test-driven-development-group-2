@@ -31,7 +31,7 @@ class MyStackTest {
     @DisplayName("ctor throws an exception if 0 is set as capacity")
     void MyStack_3() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new MyStack(-1);
+            new MyStack<>(0);
         });
     }
 
