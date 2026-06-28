@@ -130,4 +130,11 @@ class TemperatureTest {
     Temperature temp = new Temperature(100);
     assertEquals("100.00°C", temp.toString());
   }
+
+  @Test
+  @DisplayName("toString fahrenheit shows correctly")
+  void string_2(){
+    Temperature temp = new Temperature(212, Temperature.TemperatureUnit.FAHRENHEIT);
+    assertEquals("212.00°F", temp.toString());
+  }
 }
