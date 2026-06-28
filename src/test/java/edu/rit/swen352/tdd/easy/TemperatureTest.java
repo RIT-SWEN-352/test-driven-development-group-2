@@ -86,4 +86,30 @@ class TemperatureTest {
       , () -> assertEquals(Temperature.TemperatureUnit.KELVIN, cTemp.getUnit())
     );
   }
+
+  @Test
+  @DisplayName("convert valid kelvin to fahrenheit")
+  void convert_4() {
+    Temperature fTemp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
+    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.FAHRENHEIT);
+
+    assertAll("group convert assertions"
+      , () -> assertNotNull(cTemp)
+      , () -> assertEquals(212, cTemp.getValue())
+      , () -> assertEquals(Temperature.TemperatureUnit.FAHRENHEIT, cTemp.getUnit())
+    );
+  }
+
+  @Test
+  @DisplayName("convert valid kelvin to celsius")
+  void convert_5() {
+    Temperature fTemp = new Temperature(373.15, Temperature.TemperatureUnit.KELVIN);
+    Temperature cTemp = fTemp.convertTo(Temperature.TemperatureUnit.CELSIUS);
+
+    assertAll("group convert assertions"
+      , () -> assertNotNull(cTemp)
+      , () -> assertEquals(100, cTemp.getValue())
+      , () -> assertEquals(Temperature.TemperatureUnit.CELSIUS, cTemp.getUnit())
+    );
+  }
 }
