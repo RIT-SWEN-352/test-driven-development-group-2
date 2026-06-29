@@ -1,8 +1,11 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,6 +67,17 @@ class MyListTest {
         list.add("A");
 
         assertEquals("A", list.get(0));
+    }
+
+    @Test
+    @DisplayName("Get throws when index outside size")
+    void testGetInvalidIndex() {
+        MyList<String> list = new MyList<>(10);
+
+        assertThrows(
+            NoSuchElementException.class,
+            () -> list.get(0)
+        );
     }
 
 }
