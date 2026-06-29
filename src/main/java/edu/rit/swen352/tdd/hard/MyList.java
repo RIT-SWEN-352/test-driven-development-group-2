@@ -1,5 +1,6 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
@@ -41,6 +42,9 @@ public class MyList<T> {
     }
 
     public void add(T element) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 2);
+        }
         elements[size++] = element;
     }
 
