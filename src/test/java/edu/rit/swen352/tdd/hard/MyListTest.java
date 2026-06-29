@@ -80,4 +80,17 @@ class MyListTest {
         );
     }
 
+    @Test
+    @DisplayName("Remove decreases size")
+    void testRemove() {
+        MyList<String> list = new MyList<>(10);
+
+        list.add("A");
+        list.add("B");
+
+        list.remove(0);
+
+        assertEquals(1, list.size());
+    }
+
 }

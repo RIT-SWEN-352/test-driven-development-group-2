@@ -50,5 +50,13 @@ public class MyList<T> {
 
         return (T) elements[index];
     }
+
+    public T remove(int index) {
+        assert false : "not yet implemented";
+
+        T removed = (T) elements[index];
+
+        return removed;
+    }
 }
 
