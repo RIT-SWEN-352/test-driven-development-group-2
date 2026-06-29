@@ -30,7 +30,9 @@ public class MyList<T> {
 
 
     public MyList(int initialCapacity) {
-
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Capacity cannot be negative");
+        }
         elements = new Object[initialCapacity];
     }
 
