@@ -27,8 +27,7 @@ public class MyList<T> {
     }
 
     public boolean isEmpty() {
-        assert false : "not yet implemented";
-        return true;
+        return size == 0;
     }    
 
     public int size() {
