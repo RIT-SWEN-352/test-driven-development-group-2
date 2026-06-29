@@ -1,6 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
@@ -51,6 +52,16 @@ class MyListTest {
         list.add("A");
 
         assertEquals(1, list.size());
+    }
+
+    @Test
+    @DisplayName("List with elements is not empty")
+    void testIsEmptyFalseAfterAdd() {
+        MyList<String> list = new MyList<>(10);
+
+        list.add("A");
+
+        assertFalse(list.isEmpty());
     }
 
 }
