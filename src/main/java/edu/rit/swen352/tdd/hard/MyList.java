@@ -26,6 +26,7 @@ public class MyList<T> {
 
 
     public MyList(int initialCapacity) {
+        elements = new Object[initialCapacity];
     }
 
     public boolean isEmpty() {
@@ -37,11 +38,10 @@ public class MyList<T> {
     }
 
     public void add(T element) {
-        size++;
+        elements[size++] = element;
     }
 
     public T get(int index) {
-        assert false : "not yet implemented";
         return (T) elements[index];
     }
 }

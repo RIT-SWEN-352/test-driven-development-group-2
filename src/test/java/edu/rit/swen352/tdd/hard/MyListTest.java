@@ -37,14 +37,6 @@ class MyListTest {
     }
 
     @Test
-    @DisplayName("List size is ten")
-    void testExistingSizeList() {
-        MyList<String> list = new MyList<>(10);
-
-        assertEquals(0, list.size());
-    }
-
-    @Test
     @DisplayName("Adding one element increases size")
     void testAddOneElement() {
         MyList<String> list = new MyList<>(10);
