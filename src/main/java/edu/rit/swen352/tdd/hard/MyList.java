@@ -71,7 +71,9 @@ public class MyList<T> {
     }
 
     public void forEach(Consumer<T> consumer) {
-        assert false : "not yet implemented";
+        for (int i = 0; i < size; i++) {
+            consumer.accept((T) elements[i]);
+        }
     }
 }
 
