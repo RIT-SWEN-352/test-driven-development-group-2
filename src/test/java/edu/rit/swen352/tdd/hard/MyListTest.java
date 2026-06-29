@@ -93,4 +93,15 @@ class MyListTest {
         assertEquals(1, list.size());
     }
 
+    @Test
+    @DisplayName("Get throws when index outside size")
+    void testRemoveInvalidIndex() {
+        MyList<String> list = new MyList<>(10);
+
+        assertThrows(
+            NoSuchElementException.class,
+            () -> list.remove(0)
+        );
+    }
+
 }

@@ -52,6 +52,8 @@ public class MyList<T> {
     }
 
     public T remove(int index) {
+
+
         T removed = (T) elements[index];
 
         for (int i = index; i < size - 1; i++) {
