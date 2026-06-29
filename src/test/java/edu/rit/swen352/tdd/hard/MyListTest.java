@@ -121,4 +121,16 @@ class MyListTest {
         assertEquals(6, sum.get());
     }
 
+    @Test
+    @DisplayName("List expands beyond initial capacity")
+    void testCapacityExpansion() {
+        MyList<String> list = new MyList<>(1);
+
+        list.add("A");
+        list.add("B");
+
+        assertEquals(2, list.size());
+        assertEquals("B", list.get(1));
+    }
+
 }
