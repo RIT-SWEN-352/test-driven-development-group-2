@@ -1,6 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -94,7 +95,7 @@ class MyListTest {
     }
 
     @Test
-    @DisplayName("Get throws when index outside size")
+    @DisplayName("Remove throws when index outside size")
     void testRemoveInvalidIndex() {
         MyList<String> list = new MyList<>(10);
 
@@ -102,6 +103,22 @@ class MyListTest {
             NoSuchElementException.class,
             () -> list.remove(0)
         );
+    }
+
+    @Test
+    @DisplayName("forEach visits every element")
+    void testForEach() {
+        MyList<Integer> list = new MyList<>(10);
+
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        AtomicInteger sum = new AtomicInteger();
+
+        list.forEach(sum::addAndGet);
+
+        assertEquals(6, sum.get());
     }
 
 }

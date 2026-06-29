@@ -1,6 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 /**
  * MyList is a flexible-sized sequence of elements with no gaps.
@@ -52,7 +53,9 @@ public class MyList<T> {
     }
 
     public T remove(int index) {
-
+        if (index < 0 || index >= size) {
+            throw new NoSuchElementException();
+        }
 
         T removed = (T) elements[index];
 
@@ -65,6 +68,10 @@ public class MyList<T> {
         size--;
 
         return removed;
+    }
+
+    public void forEach(Consumer<T> consumer) {
+        assert false : "not yet implemented";
     }
 }
 
