@@ -22,6 +22,8 @@ package edu.rit.swen352.tdd.hard;
 public class MyList<T> {
     
     private int size = 0;
+    private Object[] elements;
+
 
     public MyList(int initialCapacity) {
     }
@@ -36,6 +38,11 @@ public class MyList<T> {
 
     public void add(T element) {
         size++;
+    }
+
+    public T get(int index) {
+        assert false : "not yet implemented";
+        return (T) elements[index];
     }
 }
 

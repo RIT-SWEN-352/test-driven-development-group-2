@@ -64,4 +64,14 @@ class MyListTest {
         assertFalse(list.isEmpty());
     }
 
+    @Test
+    @DisplayName("Get returns added element")
+    void testGetElement() {
+        MyList<String> list = new MyList<>(10);
+
+        list.add("A");
+
+        assertEquals("A", list.get(0));
+    }
+
 }
