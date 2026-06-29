@@ -133,4 +133,13 @@ class MyListTest {
         assertEquals("B", list.get(1));
     }
 
+    @Test
+    @DisplayName("Constructor rejects negative capacity")
+    void testConstructorRejectsNegativeCapacity() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new MyList<String>(-1)
+        );
+    }
+
 }

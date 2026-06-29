@@ -30,6 +30,7 @@ public class MyList<T> {
 
 
     public MyList(int initialCapacity) {
+
         elements = new Object[initialCapacity];
     }
 
