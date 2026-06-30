@@ -1,5 +1,9 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
+
 /**
  * MyList is a flexible-sized sequence of elements with no gaps.
  * All elements must be non-{@code null}.
@@ -20,4 +24,63 @@ package edu.rit.swen352.tdd.hard;
  * @param <T> the type of elements in the list.
  */
 public class MyList<T> {
+    
+    private int size = 0;
+    private Object[] elements;
+
+
+    public MyList(int initialCapacity) {
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Capacity cannot be negative");
+        }
+        elements = new Object[initialCapacity];
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }    
+
+    public int size() {
+        return size;
+    }
+
+    public void add(T element) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 2);
+        }
+        elements[size++] = element;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new NoSuchElementException();
+        }
+
+        return (T) elements[index];
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new NoSuchElementException();
+        }
+
+        T removed = (T) elements[index];
+
+        for (int i = index; i < size - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+
+        elements[size - 1] = null;
+
+        size--;
+
+        return removed;
+    }
+
+    public void forEach(Consumer<T> consumer) {
+        for (int i = 0; i < size; i++) {
+            consumer.accept((T) elements[i]);
+        }
+    }
 }
+
